@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/setPayPwd.css">
+</head>
+<style>
+    .el-input-group__prepend{width:85px;text-align:right;letter-spacing:0;padding:0 10px;}
+</style>
+<body>
+<div id="app" v-cloak>
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="main">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="line">
+                <div class="lineInner">
+                    <div class="lineHeader">
+                        <img :src="step1"/>
+                        <div></div>
+                        <img :src="step2"/>
+                        <div></div>
+                        <img :src="step3"/>
+                    </div>
+                    <div class="lineFooter">
+                        <p>
+                            <span class="text" style="float: left;margin-left: 5px;margin-top: 4px;">验证身份</span>
+                            <span class="text"style="margin-left: -26px;">设置新密码</span>
+                            <span class="text" style="float: right;position: relative;right: 16px;top: 4px;">完成</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form">
+
+                <!--第一步-->
+                <ul class="step1" v-if="stepNum1">
+                    <li>
+                        <el-input v-model="phone" disabled>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 29px;">
+                        <div class="verBox">
+                            <el-input placeholder="请输入短信验证码" v-model="securityCode">
+                                <template slot="prepend">短信验证码</template>
+                                <template slot="append"><p @click="sendAuthCode()" style="height: 37px;line-height: 2.7;">{{autoCode}}</p></template>
+                            </el-input>
+                        </div>
+                    </li>
+
+                    <li style="margin-top: 40px;">
+                        <button class="btn-next" @click="checkAuthCode">下一步</button>
+                    </li>
+                </ul>
+
+                <!--第二步-->
+                <ul class="step1" v-if="stepNum2">
+                    <li>
+                        <el-input v-model="payPwd" placeholder="请输入支付密码">
+                            <template slot="prepend">支&nbsp;付&nbsp;密&nbsp;码</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 25px;">
+                        <el-input v-model="confirmPayPwd" placeholder="请确认支付密码">
+                            <template slot="prepend">确认支付密码</template>
+                        </el-input>
+                    </li>
+
+                    <li style="margin-top: 40px;">
+                        <button class="btn-next" @click="setPayPwd">确定</button>
+                    </li>
+                </ul>
+
+                <!--第三步-->
+                <div v-if="stepNum3" style="text-align: center">
+                    <img src="../../images/bindSuccess.png" style="width: 45px;margin-top: 85px"/>
+                    <p style="font-size: 14px;font-weight: 500;margin-top: 30px">新的登录密码设置成功，请牢记您的密码。</p>
+                    <p style="font-size: 14px;font-weight: 500;margin-top: 20px">您还可以 <a>设置支付密码，</a><a>实名认证，</a>提升您的账户安全，享受更多服务和保障。</p>
+                    <p><button class="btn-next" style="margin-top: 52px" @click="back">返回我的账户</button></p>
+                </div>
+            </div>
+
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript" src="../../plugins/public/header/header.js"></script>
+<script type="text/javascript">
+    load('setPayPwd');
+</script>
+</body>
+</html>

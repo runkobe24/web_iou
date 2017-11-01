@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微信支付</title>
+</head>
+<body>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: "Microsoft YaHei";
+        }
+        .top {
+            background-color: #81868b;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 950px;
+        }
+        .welcome {
+            display: block;
+            text-align: right;
+            color: white;
+            line-height: 26px;
+            font-size: 12px;
+        }
+        .logoSec {
+            border-bottom: 1px solid #d9d9d9;
+        }
+        .logo {
+            display: inline-block;
+            padding-right: 20px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .logo:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 6px;
+            height: 30px;
+            width: 1px;
+            background-color: #81868b;
+        }
+        .content {
+            background-color: #eff0f1;
+            padding: 30px;
+        }
+        .title {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .title b {
+            margin-right: 20px;
+        }
+        .title .money {
+            font-size: 22px;
+            color: #f60;
+            float: right;
+        }
+        .title .money span {
+            font-size: 14px;
+            color: black;
+            font-weight: normal;
+        }
+        .detail {
+            float: right;
+            position: relative;
+            right: 20px;
+            background-color: #b3b3b3;
+            padding: 5px 10px;
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .line {
+            clear: both;
+            width: 100%;
+            height: 3px;
+            background-color: #b3b3b3;
+        }
+        .payContent {
+            text-align: center;
+            background-color: white;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .moneyAmount {
+            font-size: 26px;
+            color: #f60;
+            font-weight: bold;
+        }
+        .qrCode {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .clear {
+            clear: both;
+            display: block;
+        }
+    </style>
+    <div id="app">
+
+        <section class="logoSec">
+            <div class="container">
+                <div class="logo">
+                    <img src="../images/byjfLogo.png" alt="wechat" height="40" />
+                </div>
+                <div style="display: inline-block;position: relative;top: -7px;">我的收银台</div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container" v-cloak>
+                <div class="title"><b>百运金服交易中心 - {{ payType }}</b><br /><span>收款方：深圳市百运科技有限公司</span></div>
+                <div class="clear"></div>
+                <div class="line"></div>
+                <div class="payContent">
+                    <div>扫一扫付款（元）</div>
+                    <div class="moneyAmount">{{ Number(moneyAmount).toFixed(2) }}</div>
+                    <div class="qrPics">
+                        <div class="qrCode"><img :src="qrUrl" alt=""></div>
+                        <div class="qrCode" style="margin-left: 20px;"><img src="../images/showPic.png" alt=""></div>
+                    </div>
+                </div>
+                <div class="line"></div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript" src="../../js/load.js"></script>
+    <script type="text/javascript">
+        load('pay_with_wechat');
+    </script>
+</body>
+</html>

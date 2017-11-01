@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>运条账单</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/my-luck.css">
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="luck-bill">
+				<div class="bill-menu">
+					<ul>
+						<li><a class="hover" href="luck_bill.html">已出账</a></li>
+						<li><a href="luck_bill_no.html">未出账</a></li>
+					</ul>
+				</div>
+				<div class="query">
+					<ul>
+						<li>
+							<label>
+								<p class="trans-title1">时间：</p>
+								<p>
+									<el-date-picker
+										v-model="page.startTime"
+										type="month"
+										placeholder="选择月"
+										@change="setStarttime"
+										:picker-options="pickerOptions0">
+									</el-date-picker>
+									<span class="line1">—</span>
+									<el-date-picker
+										v-model="page.endTime"
+										type="month"
+										placeholder="选择月"
+										@change="setEndtime"
+										:picker-options="pickerOptions0">
+									</el-date-picker>
+								</p>
+							</label>
+							<label>
+								<p><input name="weight" class="butt1" value="查  询" type="button" @click="queryZd"></p>
+							</label>
+						</li>
+					</ul>
+				</div>
+				<div class="bill-list">
+					<div class="list-content2" v-if="list == ''">
+						<!---无记录时显示此UL-Start-->
+						<ul class="no-record">
+							<p><img src="../../images/icons8-no-record.png"></p>
+							<p>暂无记录</p>
+						</ul>
+						<!---无记录时显示此UL-end-->
+					</div>
+					<div class="list-header2" v-if="list != ''">
+						<ul>
+							<li>账单月份</li>
+							<li>应还总额</li>
+							<li>状态</li>
+							<li>操作</li>
+						</ul>
+					</div>
+					<div class="list-content2">
+						<ul v-for="item in list">
+							<li>
+								<div class="li-box"><p>{{item.billMonth}}</p></div>
+							</li>
+							<li>
+								<div class="li-box"><p>{{item.currency}}{{item.totalDueAmount}}</p></div>
+							</li>
+							<li>
+								<div class="li-box"><p>{{item.status == 'N' ? '未还清' :item.status == 'C' ? '已还清':item.status == 'O' ? '已逾期' :''}}</p></div>
+							</li>
+							<li>
+								<div class="li-box"><p><input name="weight" class="butt butt3" value="详情" type="button" @click="goxiangqing(item)"></p></div>
+							</li>
+						</ul>
+						
+					</div>
+					<div class="block" style="margin-top:100px;" v-if="list !=''">
+							<span class="demonstration"></span>
+							<el-pagination
+								layout="total, sizes, prev, pager, next, jumper"
+								@size-change="handleSizeChange"
+								@current-change="handleCurrentChange"
+								:current-page="page.pageNum"
+								:page-sizes="[10, 20, 50, 100]"
+								:page-size="page.pageSize"
+								layout="total, sizes, prev, pager, next, jumper"
+								:total="page.total" 
+								style="text-align:center;margin-top:100px;">
+							</el-pagination>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+		<script type="text/javascript" src="../../js/load.js"></script>
+		<script type="text/javascript">
+            load('luck_bill');
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/accountSetting.css">
+</head>
+<body>
+    <div id="app">
+        <!--左菜单-->
+        <fs-left></fs-left>
+        <div class="main" v-cloak>
+            <!--头部-->
+            <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit"></fs-header>
+            <div class="content" :style="{height:contentHeight+'px'}">
+                <div class="tit">
+                    <img src="../../images/account-info.png"/>
+                    <span>基本信息</span>
+                </div>
+                <ul class="infoList">
+                    <li>
+                        <span class="titLi">实名认证</span>
+                        <span class="titSp">保障账户安全，提升账户信用度</span>
+                        <button v-if="authStatus=='S'" class="titBtn" @click="toAuthentication">立即认证</button>
+                        <b v-if="authStatus=='I'" style="float: right;position: relative;top: 30px;right: 10px;font-size: 12px;font-weight: 500;text-align: center;color: #9b9b9b;right: 32px;">认证审核中</b>
+                        <b v-if="authStatus=='F'" style="float: right;position: relative;top: 30px;right: 10px;font-size: 12px;font-weight: 500;text-align: center;color: #9b9b9b;right: 32px;">认证失败</b>
+                        <b v-if="authStatus=='N'" style="float: right;position: relative;top: 30px;right: 10px;font-size: 12px;font-weight: 500;text-align: center;color: #9b9b9b;right: 32px;">已认证</b>
+                    </li>
+                    <li>
+                        <span class="titLi">我的银行卡</span>
+                        <span class="titSp">已绑定 <b>{{bankCardNum}}</b> 张银行卡</span>
+                        <button class="titBtn" @click="toCardManage">管理</button>
+                        <a @click="toAddCard">添加银行卡</a>
+                    </li>
+                    <li>
+                        <span class="titLi">绑定邮箱</span>
+                        <span class="titSp">{{email}}</span>
+                        <button class="titBtn" @click="toUpdateEmail">修改</button>
+                    </li>
+                    <li style="border-bottom: none">
+                        <span class="titLi">已绑定手机</span>
+                        <span class="titSp" style="color:#108ee9">{{mobile}}</span>
+                        <!--<button class="titBtn">立即绑定</button>-->
+                    </li>
+                </ul>
+                <div class="tit">
+                    <img src="../../images/accountSavty.png"/>
+                    <span>账户安全</span>
+                </div>
+                <ul class="infoList" v-cloak>
+                    <li>
+                        <span class="titLi">登录密码</span>
+                        <span class="titSp">登录百运金服时需要输入的密码</span>
+                        <button class="titBtn" @click="toUpdateLoginPw">重置</button>
+                    </li>
+                    <li>
+                        <span class="titLi">支付密码</span>
+                        <span class="titSp">保护账户资金安全，在使用账户资金、运条时需要验证支付密码</span>
+                        <button class="titBtn" @click="toUpdatePayPw">{{payPasswordText}}</button>
+                    </li>
+                    <li>
+                        <span class="titLi">密保问题</span>
+                        <span class="titSp">保护个人隐私，在修改账户相关信息时使用</span>
+                        <button class="titBtn" @click="toUpdatePayQues">{{securityFlagText}}</button>
+                    </li>
+                </ul>
+                <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                    <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript">
+    load('accountSetting');
+</script>
+</body>
+</html>

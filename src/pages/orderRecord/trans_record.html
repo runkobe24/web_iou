@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="Bookmark" href="favicon.ico">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>交易记录-全部交易记录</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link  rel="stylesheet" href="../../css/trans.css"/>
+	</head>
+   <style>
+	   .el-table__header-wrapper table{width:100% !important;}
+	   .el-table__body-wrapper table{width:100% !important;}
+	   .el-table__body-wrapper table .el-tooltip{width:100% !important;}
+	   .el-table__empty-block{width:100%!important}
+   </style>
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-parent-tit="parentHeadTit" :goto="goto"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="trans-header-main">
+				<ul class="trans-header">
+					<li :class="{hover:tabFlag}" @click="tebExchange1">全部交易记录</li>
+					<li :class="{hover:!tabFlag}"  @click="tebExchange2">账户余额收支明细</li>
+				</ul>
+				<div id="con-record-1" class="one-cont" v-if="tabFlag">
+					<ul>
+						<li>
+							<label>
+								<p class="trans-title1">时间：</p>
+								<p>
+									<el-date-picker
+											v-model="page.startTime"
+											type="date"
+											placeholder="选择开始日期"
+											:picker-options="pickerOptions0"
+											@change="setStartDate1">
+									</el-date-picker>
+									<span class="line1">—</span>
+									<el-date-picker
+											v-model="page.endTime"
+											type="date"
+											placeholder="选择结束日期"
+											:picker-options="pickerOptions0"
+											@change="setEndDate1">
+									</el-date-picker>
+								</p>
+							</label>
+							<label style="margin-right:50px;"><p class="trans-title1">交易单号：</p>
+								<p><input name="weight" class="input input-font1" type="text" v-model="page.tranNo"></p>
+							</label>
+							<p><input name="weight" class="butt butt1" value="查  询" type="button" @click="queryPage"></p>
+						</li>
+						<li>
+							<p class="trans-title1">类型：</p>
+							<el-radio-group v-model="page.tranType">
+								<el-radio-button label="">全部</el-radio-button>
+								<el-radio-button label="Pay">支付</el-radio-button>
+								<el-radio-button label="Topup">充值</el-radio-button>
+								<el-radio-button label="Withdrawal">提现</el-radio-button>
+								<el-radio-button label="Repay">还款</el-radio-button>
+								<el-radio-button label="Refund">退款</el-radio-button>
+							</el-radio-group>
+						</li>
+						<li>
+							<p class="trans-title1">状态：</p>
+							<el-radio-group v-model="page.status">
+								<el-radio-button label="">全部</el-radio-button>
+								<el-radio-button label="W">待付款</el-radio-button>
+								<el-radio-button label="S">交易成功</el-radio-button>
+								<el-radio-button label="C">交易关闭</el-radio-button>
+								<el-radio-button label="P">处理中</el-radio-button>
+							</el-radio-group>
+						</li>
+						<li>
+							<p class="trans-title1">币种：</p>
+							<el-radio-group v-model="page.currency">
+								<el-radio-button label="CNY"><span class="unit">CNY</span></el-radio-button>
+								<el-radio-button label="USD"><span class="unit">USD</span></el-radio-button>
+							</el-radio-group>
+
+						</li>
+					</ul>
+				</div>
+				<div id="con-record-2" class="one-cont" v-if="!tabFlag">
+					<ul>
+						<li>
+							<label>
+								<p class="trans-title1">时间：</p>
+								<p>
+									<el-date-picker
+											v-model="page2.startTime"
+											type="date"
+											placeholder="选择开始日期"
+											:picker-options="pickerOptions0"
+											@change="setStartDate2">
+									</el-date-picker>
+									<span class="line1">—</span>
+									<el-date-picker
+											v-model="page2.endTime"
+											type="date"
+											placeholder="选择结束日期"
+											:picker-options="pickerOptions1"
+											@change="setEndDate2">
+									</el-date-picker>
+								</p>
+							</label>
+							<label><p><input name="weight" class="butt1" value="查  询" type="button" @click="queryPage2"></p></label>
+						</li>
+						<li>
+							<p class="trans-title1">类型：</p>
+							<el-radio-group v-model="page2.tranType">
+								<el-radio-button label="">全部</el-radio-button>
+								<el-radio-button label="Pay">支付</el-radio-button>
+								<el-radio-button label="Topup">充值</el-radio-button>
+								<el-radio-button label="Withdrawal">提现</el-radio-button>
+								<el-radio-button label="Repay">还款</el-radio-button>
+								<el-radio-button label="Refund">退款</el-radio-button>
+							</el-radio-group>
+
+						</li>
+						<li>
+							<p class="trans-title1">帐户：</p>
+							<el-radio-group v-model="page2.currency">
+								<el-radio-button label="<span id="unit">CNY</span>">人民币账户</el-radio-button>
+								<el-radio-button label="<span class="unit">USD</span>">美元账户</el-radio-button>
+							</el-radio-group>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="trans-list" v-if="tabFlag">
+				<div><el-button class="makePayment" @click="allPay"><span>合并付款</span></el-button></div>
+				<el-table ref="multipleTable" :data="page.pageData.list" tooltip-effect="dark" style="width:100%" @selection-change="handleSelectionChange">
+					<el-table-column type="selection" width="4%"><template>全选</template></el-table-column>
+					<el-table-column label="日期" width="15%" show-overflow-tooltip>
+						<template scope="scope">{{scope.row.createTime | moment}}</template>
+					</el-table-column>
+					<el-table-column label="类型" width="7%">
+						<template scope="scope">{{scope.row.tranType=='Pay'?'支付':scope.row.tranType=='Topup'?'充值':scope.row.tranType=='Withdrawal'?'提现':scope.row.tranType=='Repay'?'还款':scope.row.tranType=='Refund'?'退款':''}}</template>
+					</el-table-column>
+					<el-table-column prop="tranDigest" label="交易摘要" width="19%"></el-table-column>
+					<el-table-column label="交易单号|交易对方" width="17%">
+							<template scope="scope">{{scope.row.tranNo}} | {{scope.row.tranMerchant}}</template>
+					</el-table-column>
+					<el-table-column prop="amount" label="金额" width="11%">
+						<template scope="scope">{{scope.row.currency}} {{scope.row.tranType=='Topup'?'+':scope.row.tranType=='Refund'?'+':'-'}} {{scope.row.amount}}</template>
+					</el-table-column>
+					<el-table-column label="状态" width="10%">
+						<template scope="scope">{{scope.row.status=='S'?'交易成功':scope.row.status=='W'?'待付款':scope.row.status=='C'?'交易关闭':scope.row.status=='P'?'处理中':''}}</template>
+					</el-table-column>
+					<el-table-column label="操作" width="14%" show-overflow-tooltip>
+						<template scope="scope">
+							<el-button v-if="scope.row.status=='W'" size="small" type="info" @click="gotoPayment(scope.row)">付款</el-button>
+							<el-button size="small" @click="gotoDetail(scope.row)">详情</el-button>
+						</template>
+					</el-table-column>
+				</el-table>
+				<!-- 交易记录分页 -->
+				<div class="block" v-if="tabFlag">
+					<el-pagination
+							@size-change="handleSizeChange"
+							@current-change="handleCurrentChange"
+							:current-page="page.pageNum"
+							:page-sizes="[10, 20, 50, 100]"
+							:page-size="page.pageSize"
+							layout="total, sizes, prev, pager, next, jumper"
+							:total="page.total">
+					</el-pagination>
+				</div>
+			</div>
+			
+			<div id="li-record-2" class="two-cont" v-if="!tabFlag">
+				<div class="trans-number">
+					<div class="num-left"><span class="num-title"><img src="../../images/icon-income.png">收入</span><span>{{page2.currency}} {{page2.incomming}}</span></div>
+					<div class="num-right"><span class="num-title"><img src="../../images/icon-pay.png">支出</span><span>{{page2.currency}} {{page2.expending}}</span></div>
+				</div>
+				<div class="trans-list2">
+					<div class="list2-title">
+						<ul><li>时间</li><li>类型</li><li>交易摘要</li><li>收入</li><li>支出</li><li>余额</li></ul>
+					</div>
+					<div class="list2-cont" v-for="item in page2.pageData.list" v-cloak>
+						<ul class="list2-item">
+							<li><div class="li-box"><p>{{item.createTime | moment}}</p></div></li>
+							<li><div class="li-box"><p>{{item.tranType=='Pay'?'支付':item.tranType=='Topup'?'充值':item.tranType=='Withdrawal'?'提现':item.tranType=='Repay'?'还款':item.tranType=='Refund'?'退款':''}}</p></div></li>
+							<li><div class="li-box"><p>{{item.tranDigest}}</p></div></li>
+							<li>
+								<div class="li-box">
+									<p v-if="item.tranType == 'Topup' || item.tranType == 'Refund'">{{item.currency}} {{item.amount}}</p>
+									<p v-else>一</p>
+								</div>
+							</li>
+							<li>
+								<div class="li-box">
+									<p v-if="item.tranType == 'Pay' || item.tranType == 'Withdrawal' || item.tranType == 'Repay'">{{item.currency}} {{item.amount}}</p>
+									<p v-else>一</p>
+								</div>
+							</li>
+							<li><div class="li-box"><p>{{item.currency}} {{item.curBalance}}</p></div></li>
+						</ul>
+					</div>
+
+					<!-- 余额收支明细分页 -->
+					<div class="block">
+						<el-pagination
+								@size-change="handleSizeChange2"
+								@current-change="handleCurrentChange2"
+								:current-page="page2.pageNum"
+								:page-sizes="[10, 20, 50, 100]"
+								:page-size="page2.pageSize"
+								layout="total, sizes, prev, pager, next, jumper"
+								:total="page2.total">
+						</el-pagination>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('trans_record');
+	</script>
+	</body>
+
+</html>

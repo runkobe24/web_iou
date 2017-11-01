@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>还款</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/my-luck.css">
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="pay-back">
+				<div class="back-cont">
+					<div class="list-a">
+						<dl>
+							<dt>
+							<div class="subtitle">运条还款</div>
+							<div class="prich">还管金额<span>CNY9920.00</span></div>
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="r1" value="option1" checked>
+								<label for="r1"><span><img src="../../images/icons8-jpy.png"></span>账户余额<span>CNY{{balance}}</span></label>
+							</div>
+							<div class="prich">支付<span>CNY{{money}}</span></div>
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b" v-for="item in thirdPay">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" :id="item.id" value="option2">
+								<label :for="item.id"><span><img :src="item.icon"></span>微信支付</label>
+							</div>
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b no">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="rn" value="optionn" disabled>
+								<label for="rn"><span><img src="../../images/icons8-jpy.png"></span>账户余额<span>CNY80.00</span></label>
+							</div>
+							<div class="prich">账户余额不足</div>
+							</dt>
+						</dl>
+					</div>
+					<div class="pay-bank">
+						<div class="bank-title">网银支付　仅支持使用储蓄卡还款</div>
+						<dl>
+							<dt v-for="item in bankList">
+							<div class="subtitle"><input class="magic-radio" type="radio" name="radio" :id="item.id" value="option-b1"><label :for="item.id"><img :src="item.icon"></i></label></div>
+							</dt>
+						</dl>
+					</div>
+					<div class="pay-input-passw">
+						<div class="passw-input">
+							<p v-if="pwdFlag">
+								<el-input type="password" placeholder="请输入支付密码" style="width: 332px;" v-model="passKey">
+									<template slot="prepend">支付密码</template>
+								</el-input>
+								<span id="bycor" class="correct2" v-if="errFlag"><img src="../../images/icon-error1.png"> {{errMsg}}</span>
+								<br /><a class="forget-passw">忘记密码？</a>
+							</p>
+							<p><input name="" class="butt butt1" id="btLog" value="确认付款" type="button" @click="payBack"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('pay_back');
+	</script>
+	</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加银行卡</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/addCard.css">
+</head>
+<style>
+    .el-input-group__prepend{width:80px;text-align:center;letter-spacing:0;padding:0 5px;}
+</style>
+<body>
+<div id="app" v-cloak>
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="main">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="form_div">
+                <ul class="accountTypeList" style="margin-top: 115px;">
+                    <li>
+                        <span class="headTit">银行账户类型：</span>
+                    </li>
+                    <li style="margin-left: 20px" v-if="!isPerson">
+                        <input @click="chooseUnPersonal" :checked="!personal" class="magic-radio" name="radio" id="r4" value="option4" type="radio">
+                        <label for="r4"><span>对公账户</span></label>
+                    </li>
+                    <li style="margin-left: 50px" v-if="isPerson">
+                        <input @click="choosePersonal" :checked="personal" class="magic-radio" name="radio" id="r5" value="option5" type="radio">
+                        <label for="r5"><span>个人账户</span></label>
+                    </li>
+                    <li style="margin-top: 20px" v-if="!personal">
+                        <el-input v-model="companyName" disabled>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="personal">
+                        <el-input v-model="ownerName" disabled>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="personal">
+                        <el-input placeholder="请填写身份证号码" v-model="idNo" disabled v-if="isPerson">
+                            <template slot="prepend">身份证号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="personal">
+                        <el-input placeholder="请填写身份证号码" v-model="idNo" v-if="!isPerson">
+                            <template slot="prepend">身份证号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="personal">
+                        <el-input placeholder="请输入银行卡号" v-model="bankCardNo">
+                            <template slot="prepend">银行卡号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="personal">
+                        <el-input placeholder="请输入银行预留手机号" v-model="mobile">
+                            <template slot="prepend">预留手机号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <el-input placeholder="请输入开户银行" v-if="!personal" v-model="registerBankName">
+                            <template slot="prepend">开&nbsp;户&nbsp;银&nbsp;行</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <el-input placeholder="请输入企业对公银行账号" v-if="!personal" v-model="bankCardNo">
+                            <template slot="prepend">企业对公银行账号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <span>为保护账户安全，需要通过您绑定手机号<span>{{phone}}</span>的验证：</span>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <div class="verBox">
+                            <el-input placeholder="请输入短信验证码" v-model="securityCode">
+                                <template slot="prepend">短信验证码</template>
+                                <template slot="append"><p @click="sendAuthCode()" style="height: 37px;line-height: 2.7;width:90px;">{{autoCode}}</p></template>
+                            </el-input>
+                        </div>
+                    </li>
+                    <li style="margin-top: 66px;">
+                        <button class="sure" @click="checkAuthCode">确定</button>
+                    </li>
+                </ul>
+
+            </div>
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                <span style="opacity:0.7;font-family:'Microsoft YaHei';font-size:14px;text-align:left;color:#000;clear:both;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript" src="../../plugins/public/header/header.js"></script>
+<script type="text/javascript">
+    load('addCard');
+</script>
+</body>
+</html>

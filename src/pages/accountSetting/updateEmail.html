@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加银行卡</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/updateEmail.css">
+</head>
+<style>
+    .el-input-group__prepend{text-align:center;letter-spacing:0;padding:0 10px;width:80px;}
+</style>
+<body>
+<div id="app" v-cloak>
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="main">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"  :goto="goto"></fs-header>
+
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="line">
+                <div class="lineInner">
+                    <div class="lineHeader">
+                        <img :src="step1"/>
+                        <div></div>
+                        <img :src="step2"/>
+                        <div></div>
+                        <img :src="step3"/>
+                    </div>
+                    <div class="lineFooter">
+                        <p>
+                            <span class="text" :class="{vdbule:stepNum1}" style="float: left;margin-left: 5px;margin-top: 4px;">验证身份</span>
+                            <span class="text" :class="{vdbule:stepNum2}" style="margin-left: -26px;">绑定邮箱</span>
+                            <span class="text" :class="{vdbule:stepNum3}" style="float: right;position: relative;right: 16px;top: 4px;">完成</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form_div">
+                <div style="width: 401px;height: 400px;margin: auto">
+                    <ul class="accountTypeList">
+                        <!--第一步-->
+                        <li style="margin-top: 20px" v-if="stepNum1">
+                            <el-input  v-model="phone" disabled>
+                                <template slot="prepend">手机号</template>
+                            </el-input>
+
+                        </li>
+                        <li style="margin-top: 20px" v-if="stepNum1">
+                            <div class="verBox">
+                                <el-input placeholder="请输入短信验证码" v-model="securityCode">
+                                    <template slot="prepend">短信验证码</template>
+                                    <template slot="append"><p @click="sendAuthCode()" style="height: 37px;line-height: 2.7;width:90px;">{{autoCode}}</p></template>
+                                </el-input>
+                            </div>
+                        </li>
+                        <!--第二步-->
+                        <li style="margin-top: 20px" v-if="stepNum2">
+                            <span style="font-size: 12px;text-align: left;color: #000000;">请确保您输入的邮箱能正常接收激活邮件。</span>
+                        </li>
+                        <li style="margin-top: 20px" v-if="stepNum2">
+                            <el-input placeholder="请输入邮箱" v-model="emailAddress">
+                                <template slot="prepend">邮箱</template>
+                            </el-input>
+                        </li>
+
+                        <li style="margin-top: 20px" v-if="isSendEmail">
+                            <span style="font-size: 12px;text-align: left;color: #000000;">请输入邮箱验证码。</span>
+                        </li>
+                        <li style="margin-top: 20px" v-if="isSendEmail">
+                            <el-input placeholder="请输入验证码" v-model="emailCode">
+                                <template slot="prepend">验证码</template>
+                            </el-input>
+                        </li>
+                        <!--<li style="margin-top: 20px" v-show="sendFlag">
+                            <p class="megTit"><img style="width: 24px;height: 24px;" src="../../images/pass.png"/>验证邮件已发送至您的邮箱：<span>1083384352@qq.com</span><a style="font-size: 12px;margin-left: 24px">返回修改</a></p>
+                            <p class="mesTips">验证邮件24小时内有效，请按邮件中的提示操作，尽快完成验证。</p>
+                            <p class="mesControl"><button>前往查收邮件</button> <span>一直没有收到邮件？&nbsp;<a>重新发送邮件</a></span></p>
+                        </li>-->
+                        <!--第三步-->
+                        <li v-if="stepNum3" style="text-align: center;margin-top: 20px">
+                            <p><img src="../../images/bindSuccess.png" style="width: 45px;"/></p>
+                            <p style="font-size: 14px;font-weight: 500;text-align: center;color: #000000;margin-top: 20px;">邮箱绑定成功</p>
+                            <p><button class="back" @click="backMyAccount">返回账户设置</button></p>
+                        </li>
+                        <li style="margin-top: 66px;">
+                            <button class="sure" v-if="stepNum1" @click="checkAuthCode">下一步</button>
+                            <button class="sure" @click="sendEmail" v-if="stepNum2">发送验证邮件</button>
+                            <button class="sure" @click="checkEmailCode" v-if="isSendEmail">校验验证邮件</button>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript">
+    load('updateEmail');
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>供应商-账户总览</title>
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/account-overview.css">
+	</head>
+	<body>
+	<div id="app">
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+			<!--头部-->
+			<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit"></fs-header>
+			<div class="content" :style="{height:contentHeight+'px'}">
+				<div class="account-overview">
+					<div class="i-home">
+						<div class="cre-box">
+							<div class="cre-item2">
+								<div class="i-title"><h3>账户余额</h3></div>
+								<div class="item2-box">
+									<div class="number-left">CNY3235.00</div>
+									<div class="but-right">
+										<a href="" class="butt butt3">充值</a>
+										<a href="" class="butt butt4">提现</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="i-home">
+						<div class="i-left2">
+							<div class="i-title"><h3>最近交易记录</h3><span><a href="#">查看全部交易记录<em> ></em></a></span></div>
+							<div class="trans-list">
+								<div class="list-title">
+									<ul><li>时间</li><li class="wid-1">类型</li><li class="wid-2">交易摘要</li><li>金额</li><li>状态</li><li>操作</li></ul>
+								</div>
+								<div class="list-cont">
+									<ul class="list-item">
+										<li><div class="li-box"><p>2017-12-06/16:35</p></div>
+										</li>
+										<li class="cont-wid-1"><div class="li-box"><p>支付</p></div></li>
+										<li class="cont-wid-2"><div class="li-box text-left"><p>国际快递DHL-CN深圳-印度尼西亚</p><p>订单号：WE01706003818</p></div></li>
+										<li><div class="li-box"><p><span id="unit">CNY</span>-500.00</p></div></li>
+										<li><div class="li-box wid2"><p>待付款</p></div></li>
+										<li><div class="li-box"><p><input name="weight" class="butt butt3" value="付款" type="button" onclick="window.location.href='trans-payment.html'"><p><p><input name="weight" class="butt butt4" value="详情" type="button" onclick="window.location.href='../orderRecord/trans_info_tip.html'"></p></div></li>
+									</ul>
+									<ul class="list-item">
+										<li class="cont-wid-3"><div class="li-box"><p>2017-12-06/16:35</p></div></li>
+										<li class="cont-wid-1"><div class="li-box"><p>支付</p></div></li>
+										<li class="cont-wid-2"><div class="li-box text-left"><p>网银充值</p></div></li>
+										<li><div class="li-box"><p><span id="unit">CNY</span>+500.00</p></div></li>
+										<li><div class="li-box wid2"><p>交易成功</p></div></li>
+										<li><div class="li-box"><p><input name="weight" class="butt butt4" value="详情" type="button" onclick="window.location.href='trans-info-tip.html'"></p></div></li>
+									</ul>
+									<ul class="list-item">
+										<li class="cont-wid-3"><div class="li-box"><p>2017-12-06/16:35</p></div></li>
+										<li class="cont-wid-1"><div class="li-box"><p>支付</p></div></li>
+										<li class="cont-wid-2"><div class="li-box text-left"><p>网银充值</p></div></li>
+										<li><div class="li-box"><p><span id="unit">CNY</span>+500.00</p></div></li>
+										<li><div class="li-box wid2"><p>交易成功</p></div></li>
+										<li><div class="li-box"><p><input name="weight" class="butt butt4" value="详情" type="button" onclick="window.location.href='trans-info-tip.html'"></p></div></li>
+									</ul>
+									<ul class="list-item">
+										<li class="cont-wid-3"><div class="li-box"><p>2017-12-06/16:35</p></div>
+										</li>
+										<li class="cont-wid-1"><div class="li-box"><p>支付</p></div></li>
+										<li class="cont-wid-2"><div class="li-box text-left"><p>国际快递DHL-CN深圳-美国</p><p>订单号：WE01706003818</p></div></li>
+										<li><div class="li-box"><p><span id="unit">CNY</span>-500.00</p></div></li>
+										<li><div class="li-box wid2"><p>待付款</p></div></li>
+										<li><div class="li-box"><p><input name="weight" class="butt butt3" value="付款" type="button" onclick="window.location.href='trans-payment.html'"><p><p><input name="weight" class="butt butt4" value="详情" type="button" onclick="window.location.href='trans-info-tip.html'"></p></div></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+					<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('gy_account_overview');
+	</script>
+
+	</body>
+</html>

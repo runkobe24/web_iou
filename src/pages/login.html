@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../plugins/elementUI/elementUi.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="outer">
+            <div class="header">
+                <img class="logo" src="../images/byjfLogo.png">
+                    <a class="login">登录</a>
+                    <a class="firstPage" @click="toIndex">首页</a>
+            </div>
+            <div class="content">
+                <img class="loginImg" src="../images/Group5.png">
+                <div class="login_form">
+                    <img style="width: 84%;margin-left: 8%; display: block" src="../images/form-head.png">
+                    <ul style="text-align: center; margin-bottom: 12%" v-cloak>
+                        <li>
+                            <el-input @change="change" style="width: 76%;margin-top: 10%;" placeholder="请输入内容" v-model="userName">
+                                <template style="width: 21.7%" slot="prepend"><img src="../images/user.png"/></template>
+                            </el-input>
+
+                        </li>
+                        <li>
+                            <el-input style="width: 76%;margin-top: 10%;" placeholder="请输入内容" v-model="password">
+                                <template style="width: 21.7%" slot="prepend"><img src="../images/password.png"/></template>
+                            </el-input>
+                        </li>
+                        <li style="margin-top: 2%;">
+                            <a class="link" style="margin-right: 32%;" @click="alert">忘记密码？</a>
+                            <a class="link" @click="toRegister">立即注册</a>
+                        </li>
+                        <li style="margin-top: 10%;">
+                            <el-button style="width: 73%;border-radius: 100px;height: 36px;" type="primary">登录</el-button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">
+                <span>©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="../js/load.js"></script>
+<script type="text/javascript">
+    load('login');
+</script>
+</body>
+</html>
+

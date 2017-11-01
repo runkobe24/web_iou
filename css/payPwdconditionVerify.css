@@ -1,0 +1,65 @@
+.lineHeader{
+    text-align: center;
+}
+.lineHeader img{
+    width: 38px;
+    height: 38px;
+}
+.lineHeader div{
+    display: inline-block;
+    height: 2px;
+    width: 195px;
+    background: #9b9b9b;
+    margin-bottom: 18px;
+}
+.lineFooter{
+    text-align: center;
+}
+.lineFooter p{
+    width: 543px;
+    margin: auto;
+}
+.lineFooter span{
+    opacity: 0.7;
+    font-size: 12px;
+    text-align: center;
+    color: #9b9b9b;
+}
+.line{
+    margin-top: 72px;
+}
+.step1,.step2{
+    width: 360px;
+    margin: auto;
+    margin-top: 72px;
+}
+.btn-next{
+    width: 140px;
+    height: 36px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    color:#ffffff;font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    border:none;
+}
+.step1 li span{
+    font-size: 12px;
+    text-align: left;
+    color: #666666;
+    margin-left: 40px;
+}
+.verBox .el-input-group__prepend{
+    padding:0 2px;
+}
+.verBox .el-input-group__append{
+    background-color: #C8C8C8;
+    cursor: pointer;
+    color:#ffffff;
+    width:70px;
+    text-align: center;
+}
+.verBox .el-input-group__append:hover{
+    background-color: #9B9B9B;
+}
+.vdbule{color:#108ee9 !important;font-weight:bold;}

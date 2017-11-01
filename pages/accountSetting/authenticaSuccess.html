@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/authenticaSuccess.css">
+</head>
+<body>
+<div id="app">
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="mian">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="inner">
+                <h3><img src="../../images/pass.png"/>您已提交实名认证，我们将在5-7个工作日内完成审核，请耐心等待</h3>
+                <p>您还可以&nbsp; <span style="cursor:pointer;"><span @click="toSetPayPwd">设置支付密码、</span><span @click="toUpdatePayQues">设置密保问题，</span></span>&nbsp;提升您的账户安全，享受更多服务和保障</p>
+                <a @click="toAccount_overview"><img src="../../images/user-icon.png"/>返回我的账户</a>
+            </div>
+
+
+            <!--<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">-->
+            <!--<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../../js/load.js?v=1.0"></script>
+<script type="text/javascript" src="../../plugins/public/header/header.js"></script>
+<script type="text/javascript">
+    load('authenticaSuccess');
+</script>
+</body>
+</html>

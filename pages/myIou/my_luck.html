@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的运条</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/my-luck.css">
+	</head>
+	
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+			<!--头部-->
+			<fs-header :header-parent-tit="parentHeadTit"></fs-header>
+			<div class="content" :style="{height:contentHeight+'px'}">
+				<div class="my-luck">
+					<div class="i-home">
+						<div class="home-left">
+							<ul>
+								<li class="lia">
+									<p class="byfc-ellipsis">当前待还款</p>
+									<p class="byfc-ellipsis"><span>{{currency+'&nbsp;'+waiteRepayAmount}}</span><span class="prompt-info" v-if="isOverdue!='N'">逾期欠款{{waiteRepayAmount}}元，请尽快还款，以免产生更多逾期利息</span></p>
+								</li>
+								<li class="lib">
+									<p class="byfc-ellipsis"><a href="luck_bill.html" class="see-btn" >查看账单</a></p>
+									<p class="byfc-ellipsis" v-if="waiteRepayAmount !=0"><a @click="showCover" class="hk-btn">还款</a></p>
+									<p class="byfc-ellipsis" v-if="waiteRepayAmount ==0"><a class="hk-btn-no">还款</a></p>
+								</li>
+								<li class="lic">
+									<p class="byfc-ellipsis">到期还款日：每月9日</p>
+									<p class="byfc-ellipsis">账单日：每月1日</p>
+									<p class="b-r byfc-ellipsis">下期应还款：<span>{{'CNY'+'&nbsp;'+nextRepaymet}}</span></p>
+								</li>
+							</ul>
+						</div>
+						<div class="home-right">
+							<ul>
+								<li class="lia">
+									<p class="byfc-ellipsis">运条可用额度</p>
+									<p class="byfc-ellipsis"><span v-if="isOverdue=='N'">{{currency+avaliableQuata}}</span><span class="time-limit" v-if="isOverdue!='N'">{{currency+avaliableQuata}}</span><span class="prompt-info" v-if="isOverdue!='N'">逾期，无法使用</span></p>
+								</li>
+								<li class="lic">
+									<p class="byfc-ellipsis">运条总额度：<span>{{currency+'&nbsp;'+creditQuota}}</span>　此额度仅用于支付账单，最长40天免息</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+					<span style="opacity:0.7;font-family:'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="popUp" class="cover" v-if="coverFlag" v-cloak>
+		<div class="cover-bg"></div>
+		<div class="cover-box">
+			<div class="cover-tit">
+				<h3 style="height:35px;line-height:35px;margin-left:20px;color:#666;">运条还款</h3>
+				<a class="cover-close" @click="hideCover"><img src="../../../images/closeAlert.png"/></a>
+			</div>
+			<div class="cover-content">
+				<div class="cover-text">
+					<ul>
+						<li><el-input style="height:40px;width:80%;margin:10px 0 0 15px;" placeholder="请输入付款密码" v-model="money">
+							<template style="height:40px;width:21.7%" slot="prepend">还款金额</template>
+						</el-input><label style="margin-left:10px;">CNY</label></li>
+						<li><p style="color:#ff0000;margin:5px 0 0 95px;" >全部需还款金额：CNY500.00</p></li>
+					</ul>
+				</div>
+				<button class="cancel-cover" @click="hideCover">取消</button>
+				<button class="sure-cover"  @click="srueToDo">确认</button>
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('my_luck');
+	</script>
+	</body>
+</html>

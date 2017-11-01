@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>运条成功还款</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/my-luck.css">
+	</head>
+
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="pay-back">
+				<div class="main-tip">
+					<div class="list-c">
+						<dl>
+							<dt><img src="../../images/icons8-prpomt-ok.png">运条成功还款<span><span id="unit">CNY</span>{{waiteRepayAmount}}</span></dt>
+							<dt>
+								<a href="my_luck.html"><img src="../../images/icons8-my-luck.png">查看我的运条</a>
+								<a href="../myAccount/account_overview.html"><img src="../../images/icons8-purchase-order.png">返回我的账户</a>
+							</dt>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('pay_back_ok');
+	</script>
+	</body>
+
+</html>

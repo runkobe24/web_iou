@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>交易记录-待付款</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/trans.css" />
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="pay-back">
+				<div class="trans-info" v-if="tranSummary.tranStatus=='W'">
+					<ul class="info-item1">
+						<li><img src="../../images/icons-mark.png"><span>待付款</span></li>
+						<li><input name="weight" class="butt butt5" value="付款" onclick="window.location.href='trans_payment.html'" type="button"></li>
+					</ul>
+				</div>
+				<div class="trans-info" v-if="tranSummary.tranStatus=='S'">
+					<ul class="info-item1">
+						<li><img src="../../images/icons-tick.png"><span>交易成功</span></li>
+					</ul>
+				</div>
+				<div class="trans-info" v-if="tranSummary.tranStatus=='C'">
+					<ul class="info-item1">
+						<li><img src="../../images/icons-cross.png"><span>交易关闭</span></li>
+						<li><p>原因：超时关闭</p></li>
+					</ul>
+				</div>
+				<div class="trans-info" v-if="tranSummary.tranStatus=='P'">
+					<ul class="info-item1">
+						<li><img src="../../images/icons-hand.png"><span>处理中</span></li>
+					</ul>
+				</div>
+				<div class="trans-info2">
+					<div class="location2">交易信息</div>
+					<div class="trans-list3">
+						<div class="list3-title">
+							<ul><li>类型</li><li>交易摘要</li><li>交易单号</li><li>金额</li><li>交易对方</li></ul>
+						</div>
+						<div class="list3-cont">
+							<ul class="list3-item">
+								<li><div class="li-box"><p>{{tranSummary.tranTypeStr}}</p></div></li>
+								<li><div class="li-box"><p>{{tranSummary.transDigest}}</p><p></p></div></li>
+								<li><div class="li-box"><p>{{tranSummary.tranNo}}</p></div></li>
+								<li><div class="li-box"><p class="font-blue">CNY {{tranSummary.tranAmount}}</p></div></li>
+								<li><div class="li-box"><p>{{tranSummary.tranMerchant}}</p></div></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="trans-info2">
+					<div class="location2">费用信息</div>
+					<div class="trans-list4">
+						<div class="list4-title">
+							<ul><li>账单号</li><li>费用名称</li><li>费用金额</li></ul>
+						</div>
+						<div class="list4-cont">
+							<ul class="list4-item" v-for="item in feeSummary">
+								<li><div class="li-box"><p>{{item.billNo}}</p></div></li>
+								<li><div class="li-box"><p>{{item.costName}}</p></div></li>
+								<li><div class="li-box"><p class="font-blue">CNY{{item.billAmount}}</p></div></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="trans-info2">
+					<div class="location2">交易时间</div>
+					<div class="trans-list4">
+						<div class="cre-time"><ul><li>创建时间：<span>{{timeSummary.createTime}}</span></li><li v-if="closeTimeFlag">交易关闭时间：{{refundSummaryObj.closeTime}}</li></ul></div>
+						<div class="trans-list5" v-if="RefundFlag">
+							<div class="list5-title"><ul><li>退款方式</li><li>实付金额</li></ul></div>
+							<div class="list5-cont">
+								<ul class="list5-item">
+									<li><div class="li-box"><p>人民币账户余额</p></div></li>
+									<li><div class="li-box"><p class="font-blue font-s16">CNY 500.00</p></div></li>
+								</ul>
+								<ul class="list5-item">
+									<li><div class="li-box"><p >运条账户余额</p></div></li>
+									<li><div class="li-box"><p class="font-blue font-s16">CNY 53.00</p></div></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('trans_info_tip');
+	</script>
+	</body>  
+</html>

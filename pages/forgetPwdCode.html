@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码-操作</title>
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/forgetPwdCode.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../plugins/elementUI/elementUi.css">
+
+</head>
+<body>
+<div class="outer" id="app" v-cloak>
+    <div class="header">
+        <div style="width: 1200px;margin: auto">
+            <img class="logo" src="../images/byjfLogo.png" @click="fsby56()">
+            <a class="login" style="width:100px;">重置登录密码</a>
+        </div>
+
+    </div>
+    <div class="formBox" style="margin-left: 0px;" v-cloak>
+        <!--表单-->
+        <div style="width:1200px;height:532px;background-color: #ffffff;margin:auto;text-align: center;">
+            <div class="formHeader">
+                <p style="margin-left:12%;text-align:left;line-height:50px"><span>您正在为账户<span style="color:#00a0e9">{{acPhone}}</span>重置登录密码，请选择重置方式：</span></p>
+            </div>
+            <div class="payPwOperate">
+                <div class="payLeft">
+                    <img src="../../images/questionMark.png" />
+                    <span>
+                             <p style="margin-top:15px;">通过密保问题重置</p>
+                             <p style="color:#999;font-size:12px;line-height:28px">如您已设置密保问题，可选择此方式</p>
+                        </span>
+                </div>
+                <button @click="toSecurityVerify">重置</button>
+            </div>
+            <div class="payPwOperate" v-if="isMobile">
+                <div class="payLeft">
+                    <img src="../../images/phonePwd.png" />
+                    <span>
+                             <p style="margin-top:15px;">通过验证手机重置</p>
+                             <p style="color:#999;font-size:12px;line-height:28px">如您的手机仍在正常使用，可选择此方式</p>
+                        </span>
+                </div>
+                <button @click="toPhoneVerify">重置</button>
+            </div>
+            <div style="text-align: center;height: 90px;">
+                <span class="help">无法自助修改密码？请拨打客服热线 400-926-8156，联系客服协助处理。</span>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: #f4f5f7;height: 110px;text-align: center;">
+        <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;position: relative;top: 50px;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+    </div>
+</div>
+<script type="text/javascript" src="../js/load.js"></script>
+<script type="text/javascript">
+    load('forgetPwdCode');
+</script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账单详情－运条账单</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/my-luck.css">
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<!---已还清-Start-->
+			<div class="luck-bill-box" v-show="bills.status =='C'">
+				<div class="bill-state">
+					<ul>
+						<li>{{bills.billMonth+'的账单'}}<span class="state-b"><img src="../../images/icons8-prpomt-ok.png">已完清</span></li>
+					</ul>
+				</div>
+				<div class="bill-info1">
+					<ul>
+						<li class="lia">账单周期：{{bills.startDate	}}至{{bills.endDate}}</li>
+						<li class="lia">账单日：{{bills.billDate}}</li>
+						<li class="lia">到期还款日：{{bills.payDueDate}}</li>
+						<li class="lib"><input name="weight" class="butt butt1-2" value="导出运条账单" type="button"  @click="exportBill"></li>
+					</ul>
+				</div>
+				<div class="bill-info2">
+					<div class="info-left">
+						<ul>
+							<li class="lia">
+								<span class="column-a"><p>本期剩余应还金额</p><p class="fontstyle">{{bills.waiteRepayAmount}}</p></span>
+								<span class="column-b">=</span>
+							</li>
+							<li class="lib">
+								
+								<span class="column-a"><p>本期消费金额</p><p class="fontstyle">{{bills.currentPayAmount}}</p></span>
+								<span class="column-b">-</span>
+								<span class="column-a"><p>本期已还金额</p><p class="fontstyle">{{bills.currentRepayAmount}}</p></span>
+								<span class="column-b">+</span>
+								<span class="column-a"><p>逾期利息</p><p class="fontstyle">{{bills.overdueInterest}}</p></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!---已还清-end-->
+
+			<!---未还清-Start-->
+			<div class="luck-bill-box" v-show="bills.status =='N'">
+				<div class="bill-state">
+					<ul>
+						<li>{{bills.billMonth+'的账单'}}<span class="state-c"><img src="../../images/icons8-prompt2.png">未还清</span></li>
+					</ul>
+				</div>
+				<div class="bill-info1">
+					<ul>
+						<li class="lia">账单周期：{{bills.startDate	}}至{{bills.endDate}}</li>
+						<li class="lia">账单日：{{bills.billDate}}</li>
+						<li class="lia">到期还款日：{{bills.payDueDate}}</li>
+						<li class="lib"><input name="weight" class="butt butt1-2" value="导出运条账单" type="button" @click="exportBill"></li>
+					</ul>
+				</div>
+				<div class="bill-info2">
+					<div class="info-left">
+						<ul>
+							<li class="lia">
+								<span class="column-a"><p>本期剩余应还金额</p><p class="fontstyle">{{bills.totalBillAmount+bills.overdueInterest}}</p></span>
+								<span class="column-b">=</span>
+							</li>
+							<li class="lib">
+								
+								<span class="column-a"><p>本期消费金额</p><p class="fontstyle">{{bills.currency+bills.currentPayAmount}}</p></span>
+								<span class="column-b">-</span>
+								<span class="column-a"><p>本期已还金额</p><p class="fontstyle">{{bills.currentRepayAmount}}</p></span>
+								<span class="column-b">+</span>
+								<span class="column-a"><p>逾期利息</p><p class="fontstyle">{{bills.overdueInterest}}</p></span>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<!---未还清-end-->
+			<!---已逾期-Start-->
+			<div class="luck-bill-box" v-show="bills.status=='O'">
+				<div class="bill-state">
+					<ul>
+						<li>{{bills.billMonth+'的账单'}}<span class="state-a"><img src="../../images/icons8-risk2.png">已逾期</span></li>
+					</ul>
+				</div>
+				<div class="bill-info1">
+					<ul>
+						<li class="lia">账单周期：{{bills.startDate	}}至{{bills.endDate}}</li>
+						<li class="lia">账单日：{{bills.billDate}}</li>
+						<li class="lia">到期还款日：{{bills.payDueDate}}</li>
+						<li class="lib"><input name="weight" class="butt butt1-2" value="导出运条账单" type="button" @click="exportBill"></li>
+					</ul>
+				</div>
+				<div class="bill-info2">
+					<div class="info-left">
+						<ul>
+							<li class="lia">
+								<span class="column-a"><p>本期剩余应还金额</p><p class="fontstyle">{{bills.waiteRepayAmount}}</p></span>
+								<span class="column-b">=</span>
+							</li>
+							<li class="lib">
+								
+								<span class="column-a"><p>本期消费金额</p><p class="fontstyle">{{bills.currentPayAmount}}</p></span>
+								<span class="column-b">-</span>
+								<span class="column-a"><p>本期已还金额</p><p class="fontstyle">{{bills.totalRepayAmount}}</p></span>
+								<span class="column-b">+</span>
+								<span class="column-a"><p>逾期利息</p><p class="fontstyle">{{bills.overdueInterest}}</p></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!---已逾期-end-->
+			<div class="luck-bill2">
+				<div class="record-menu">
+					<ul>
+						<li id="luck1" onclick="setTab('luck',1,2)" class="hover">消费记录</li>
+						<li id="luck2" onclick="setTab('luck',2,2)">还款记录</li>
+					</ul>
+				</div>
+				<div class="record-list" id="con-luck-1">
+					<div class="list-header">
+						<ul>
+							<li>时间</li>
+							<li>摘要</li>
+							<li>金额</li>
+						</ul>
+					</div>
+					<div class="list-content">
+						<!---无记录时显示此UL-Start-->
+						<ul class="no-record" style="display:none;">
+							<p><img src="../../images/icons8-no-record.png"></p>
+							<p>暂无记录</p>
+						</ul>
+						<!---无记录时显示此UL-end-->
+						<ul v-for="item in list_pay">
+							<li>
+								<div class="li-box"><p>{{item.tranTime | moment}}</p></div>
+							</li>
+							<li><div class="li-box text-left"><p>{{item.tranDigest}}</p></div></li>
+							<li>
+								<div class="li-box"><p>{{item.currency+'&nbsp;&nbsp;'+Number(item.amount).toFixed(2)}}</p></div>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+				<div class="record-list2" id="con-luck-2" style="display:none;">
+					<div class="list-header">
+						<ul>
+							<li>时间</li>
+							<li>摘要</li>
+							<li>金额</li>
+							<li>还款说明</li>
+						</ul>
+					</div>
+					<div class="list-content">
+						<!---无记录时显示此UL-Start-->
+						<ul class="no-record" style="display: none;">
+							<p><img src="../../images/icons8-no-record.png"></p>
+							<p>暂无记录</p>
+						</ul>
+						<!---无记录时显示此UL-end-->
+						<ul v-for="item in list_refund">
+							<li>
+								<div class="li-box"><p>{{item.tranTime | moment}}</p></div>
+							</li>
+							<li>
+								<div class="li-box text-left"><p>{{item.tranDigest}}</p></div>
+							</li>
+							<li>
+								<div class="li-box"><p>{{item.currency+'&nbsp;&nbsp;'+Number(item.amount).toFixed(2)}}</p></div>
+							</li>
+							<li>
+								<div class="li-box"><p>{{item.meno}}</p></div>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+			<div id="pagenavbar" style="text-align:center;"></div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+		</div>
+	</div>
+
+		<script type="text/javascript" src="../../js/load.js"></script>
+		<script type="text/javascript">
+            load('luck_bill_details');
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>运条账单</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/my-luck.css">
+	</head>
+
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="luck-bill">
+				<div class="bill-menu">
+					<ul>
+						<li><a href="luck_bill.html">已出账</a></li>
+						<li><a class="hover" href="luck_bill_no.html">未出账</a></li>
+					</ul>
+				</div>
+				<div class="bill-info">
+					<ul>
+						<li>消费金额合计：<span class="font-b"  >{{'CNY'+Number(list_total).toFixed(2)}}</span></li>
+
+
+						<li>已还金额合计：<span class="font-b"  >{{'CNY'}}{{Number(list_total-list_totalRefund).toFixed(2)}}</span></li>
+
+					</ul>
+				</div>
+				<div class="bill-list">
+					<div class="list-content" v-if="list == ''">
+						<!---无记录时显示此UL-Start-->
+						<ul class="no-record">
+							<p><img src="../../images/icons8-no-record.png"></p>
+							<p>暂无记录</p>
+						</ul>
+						<!---无记录时显示此UL-end-->
+					</div>
+					<div class="list-header" v-if="list !=''">
+						<ul>
+							<li>时间</li>
+							<li>类型</li>
+							<li class="text-left">摘要</li>
+							<li>金额</li>
+							<li>说明</li>
+						</ul>
+					</div>
+					<div class="list-content"  v-if="list !=''">
+						<ul v-for="item in list">
+							<li><div class="li-box"><p>{{item.tranTime |moment}}</p></div></li>
+							<li><div class="li-box"><p>{{item.tranType == 'Refund' ? '退款':item.tranType == 'Repay' ? '还款' :item.tranType == 'Pay' ? '支付' :item.tranType == 'Topup' ? '充值':item.tranType == 'Withdrawal' ? '提现':''}}</p></div></li>
+							<li><div class="li-box text-left"><p>{{item.tranDigest}}</p></div></li>
+							<li><div class="li-box"><p>{{item.currency+Number(item.amount).toFixed(2)}}</p></div></li>
+							<li><div class="li-box"><p>{{item.meno == null ? '无说明': item.meno}}</p></div></li>
+						</ul>						
+					</div>
+					<div class="block" style="margin-top:100px;"  v-if="list !=''"> 
+							<span class="demonstration"></span>
+							<el-pagination
+							  @size-change="handleSizeChange"
+							  @current-change="handleCurrentChange"
+							  :current-page="page.pageNum"
+							  :page-sizes="[10, 20, 50, 100]"
+							  :page-size="page.pageSize"
+							  layout="total, sizes, prev, pager, next, jumper"
+							  :total="page.total" style="text-align:center;">
+							</el-pagination>
+						  </div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('luck_bill_no');
+	</script>
+	</body>
+
+</html>

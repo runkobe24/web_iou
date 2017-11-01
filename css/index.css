@@ -1,0 +1,388 @@
+html,body{
+     //overflow: hidden;
+     width: 100%;
+     height: 100%;
+}
+a{
+    color:#000;
+}
+.outer{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-width: 810px;
+    height: 100%;
+    min-height: 100%;
+    background-color: #ffffff;
+    display:block;
+}
+.logo{
+    width:147px;
+    height:45px;
+    position:absolute;
+    left:10%;
+    top:50px;
+    z-index: 1;
+}
+.flexslider,.slides{
+    width: 100%;
+}
+.slides img{
+    width: 100%;
+    height: 100%;
+}
+.slides{
+    overflow:hidden;
+    position:relative;
+
+}
+.slides li{
+    margin:0px;
+    padding:0px;
+}
+.loginLi{
+    background-image:url('https://acc.by56.com:8443/iou_images/000.png');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+    margin-top:-1px;
+}
+.loginLi p{
+    text-align:center;
+
+}
+.loginLi img{
+    width:600px;
+    height:60px;
+    margin-top: 12%;
+}
+.loginBtn{
+    width: 180px;
+    height: 38px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    border:none;
+    color:#ffffff;
+    margin-right:30px;
+}
+.registerBtn{
+    width: 180px;
+    height: 38px;
+    border-radius: 100px;
+    border: solid 1px #ffffff;
+    background-color:transparent;
+    color:#ffffff;
+}
+.registerBtn:hover{
+background-color:transparent;
+}
+
+.registerIou{
+    background-image:url('https://acc.by56.com:8443/iou_images/222.png');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
+.useIt{
+    background-image:url('https://acc.by56.com:8443/iou_images/banner3.jpg');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+    margin-bottom:1px;
+}
+.up{
+    position:absolute;
+    bottom:10px;
+    left:48.6%;
+}
+.up img{
+    width:40px;
+    height:25px;
+}
+.up img:hover{
+   opacity:0.7;
+}
+.down{
+    position:absolute;
+    bottom: 20%;
+    right: 0.7%;
+}
+.down img{
+    width:50px;
+    height:50px;
+}
+.down img:hover{
+   opacity:0.7;
+}
+#eeee{
+    margin-top:-1px;
+}
+.header{
+    width:100%;
+    height:30px;
+    background-color: #050e20;
+}
+.header ul{
+    width:50%;
+    height:30px;
+    float:right;
+    text-align:center;
+}
+.header ul li{
+    float:left;
+    height:30px;
+    border-right:solid 1px #4a4a4a;
+    font-size: 12px;
+    text-align: left;
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    color: #ffffff;
+}
+.logoBox{
+    width:100%;
+    height:70px;
+    background:#ffffff;
+}
+.pageList{
+    position:absolute;
+    top:48%;
+    right:2%;
+}
+.pageList li{
+    margin-top:18px;
+}
+.pageList div{
+    width:12px;
+    height:12px;
+    border:1px solid #ffffff;
+    border-radius:10px;
+    cursor:pointer;
+}
+.pageList div:hover{
+    background-color:#ffffff;
+}
+.active{
+    background-color:#ffffff;
+}
+.banner2Inner,.banner3Inner{
+    width:33.25%;
+    position:relative;
+    top:25%;
+    left:16%;
+}
+.banner2Inner img{
+    width:95%;
+}
+.banner3Inner img{
+    width:100%;
+}
+
+.explain{
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.8;
+    text-align: left;
+    color: #032137;
+}
+.openNow{
+    width: 117.1px;
+    height: 30px;
+    border-radius: 100px;
+    background-color: #ffffff;
+    color: #108ee9;
+    border:none;
+}
+.openNow2{
+    width: 117.1px;
+    height: 30px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    color:#ffffff;
+    border:none;
+}
+.openNow:hover{
+    color:#ffffff;
+}
+.loginFoot{
+    height: 83px;
+    opacity: 0.9;
+    background-color: rgba(17, 33, 48, 0.9);
+
+}
+.loginFoot p{
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    top: 30px;
+}
+.loginOut{
+    color: #ffffff;
+    font-size: 12px;
+    margin-left: 20px;
+    border-left:1px solid #4a4a4a;
+    padding-left: 20px;
+}
+/*登录弹窗样式*/
+.firstPage{
+    margin-left: 42%;
+    position: relative;
+    bottom: 25%;
+}
+.login_form{
+    width: 430px;
+    height: 430px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.08);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index:10;
+    transition: width 2s;
+    -moz-transition: width 2s;	/* Firefox 4 */
+    -webkit-transition: width 2s;	/* Safari 和 Chrome */
+    -o-transition: width 2s;    /* Opera */
+}
+.nameInput {
+    width: 76%;
+}
+.link{
+    width: 60px;
+    height: 17px;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    text-align: left;
+    color: #108ee9;
+}
+.el-input__inner{
+    height:40px;
+}
+.contentImg{
+    left: 13%;
+    float: right;
+    width: 64%;
+    margin-top: 4%;
+    margin-right: 20%;
+    position:relative;
+}
+.p-text{
+    opacity: 0.7;
+    font-size: 12px;
+    line-height: 2.08;
+    margin-top: 10px;
+    color: #000000;
+    font-family:"Microsoft YaHei"
+}
+.bgp{
+    width:100%;
+    background-repeat: no-repeat;
+    -moz-background-size:100% 100%;
+    display:block;
+}
+.tips{
+    width: 365px;
+}
+.ytHeader{
+    min-width:1200px;
+}
+.ytTit{
+    position: relative;
+    top: -222px;
+    left: 133px;
+    font-size: 50px;
+    font-weight: 600;
+    color: #108ee9;
+}
+.ytCount{
+    font-size: 18px;
+    font-weight: 500;
+    color: #108ee9;
+    position: relative;
+    top: -212px;
+    left: 95.5px;
+}
+.toYt{
+    position: relative;
+    top: -153px;
+    left: 118px;
+    width: 130px;
+    height: 36px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    border: none;
+    color: #ffffff;
+}
+.midTab{
+    width:100%;
+    height:498px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-image: url("../images/registerBackgroundImg.png");
+}
+.tabEle{
+    width: 285px;
+    height: 330px;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.midTab_li{
+     position:relative;
+     float:left;
+     margin-top:87px;
+ }
+.tabEle h3{
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #041526;
+    position:relative;
+}
+.tabEle p{
+    opacity: 0.5;
+    font-family: "Microsoft YaHei";
+    text-align: center;
+    font-size: 12px;
+    text-align: left;
+    color: #041526;
+    position:relative;
+}
+.midTab li:hover{
+    box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.18);
+    color: #108ee9;
+}
+.ytUse{
+    width:100%;
+    height:496px;
+    background-color:#ffffff;
+    text-align:center;
+}
+.userWay{
+    width:1200px;
+    height:293px;
+    margin:auto;
+    position:relative;
+    top:164px;
+    text-align:center;
+}
+.userWay li{
+    float:left;
+}
+.userWay img{
+    margin-left:61px;
+}
+.userWay p{
+    opacity: 0.6;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    text-align: center;
+    color: #000000;
+    position:relative;
+}

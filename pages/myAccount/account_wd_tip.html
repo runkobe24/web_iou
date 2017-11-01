@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账户总览-提现提交</title>
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/account-overview.css">
+	</head>
+	<body>
+	<div id="app">
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<!--头部-->
+		<div class="main">
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit"></fs-header>
+		<div class="content" :style="{width:contentWidth+'px',height:contentHeight+'px'}">
+			<div class="account-overview">
+				<div class="wd-tip">
+					<h2><img src="../../images/icons-hand.png">提现申请已提交，正在处理中</h2>
+					<p>提现审核通过后，预计将在1个工作日后到帐，请耐心等待。如提现失败，资金将会返回您的账户余额</p>
+					<div class="wd-tip-link">
+						<a href="#"><img src="../../images/icons-filled.png" width="15">查看提现记录</a>
+						<a href="#"><img src="../../images/icons-user.png" width="15">返回我的账户</a>
+						<a href="#"><img src="../../images/icons-cards.png" width="15">添加银行卡</a>
+					</div>
+				</div>
+
+				<div class="wd-tip">
+					<h2><img src="../../images/icons-tick.png">您已成功充值<em class="font-blue">CNY500.00</em></h2>
+					<div class="wd-tip-link">
+						<a href="#"><img src="../../images/icons-filled.png" width="15">查看充值记录</a>
+						<a href="#"><img src="../../images/icons-user.png" width="15">返回我的账户</a>
+					</div>
+				</div>
+
+				<div class="wd-tip">
+					<h2><img src="../../images/icons-tick.png">您已成功充值<em class="font-blue">CNY500.00</em></h2>
+					<div class="wd-tip-link">
+						<a href="#"><img src="../../images/icons-filled.png" width="15">查看充值记录</a>
+						<a href="#"><img src="../../images/icons-user.png" width="15">返回我的账户</a>
+					</div>
+				</div>
+
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('account_wd_tip');
+	</script>
+
+	</body>
+
+</html>

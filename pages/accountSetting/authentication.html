@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/authentication.css">
+</head>
+<body>
+<div id="app">
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="main">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="tit">
+                <span>请选择认证类型<em style="color:#f00404">（认证成功后，类型不能再更改）：</em></span>
+            </div>
+            <div style="height: 380px;width: 100%;">
+                <div style="margin: auto;height: 380px;width: 762px;">
+                    <!--个人认证-->
+                    <div :class="{active:selected}" @click="clickPerson" class="person" v-if="flag">
+                        <div :class="{selected:selected}" style="width: 100%;height: 8px;border-radius: 5px;"></div>
+                        <img src="../../images/personV.png"/>
+                        <h2>个人认证</h2>
+                        <div class="expTxt">
+                            <p style="font-weight: 600;margin-bottom: 15px">适用于个人用户</p>
+                            <p>需提供：</p>
+                            <p>个人身份证信息：</p>
+                            <p>与个人身份证相匹配的银行卡信息：</p>
+                        </div>
+
+                    </div>
+                    <!--企业认证-->
+                    <div :class="{active:!selected}" @click="clickCompany" class="company">
+                        <div :class="{selected:!selected}" style="width: 100%;height: 8px;border-radius: 5px;"></div>
+                        <img src="../../images/companyV.png"/>
+                        <h2>企业认证</h2>
+                        <div class="expTxt">
+                            <p style="font-weight: 600;margin-bottom: 15px">适用于企业用户</p>
+                            <p>需提供：</p>
+                            <p>企业基本信息和营业执照扫描件：</p>
+                            <p>企业法人身份信息和申请人信息：</p>
+                            <p>法人授权委托书（必须加盖企业公章）：</p>
+                            <p>个人或对公企业银行账户</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 96px;margin-top: 2px;text-align: center;">
+                <button @click="next" class="next">下一步</button>
+            </div>
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript" src="../../plugins/public/header/header.js"></script>
+<script type="text/javascript">
+    load('authentication');
+</script>
+</body>
+</html>

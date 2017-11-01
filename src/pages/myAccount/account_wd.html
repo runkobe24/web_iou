@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账户总览-提现</title>
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/account-overview.css">
+	</head>
+	<body>
+	<div id="app">
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<!--头部-->
+		<div class="main" v-cloak>
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="account-overview">
+				<div class="rech-box">
+					<div class="rech-title"><span>人民币账户可提现金额</span><span><em><span id="unit">CNY</span>{{balance}}</em></span></div>
+					<div class="wd-main">
+						<div class="i-title"><h3>选择银行卡</h3><span><a @click="toAddBankCard"><img src="../../images/icons8-bank.png"> 添加银行卡</a></span></div>
+						<ul>
+							<li v-for="item in bankListD">
+								<div class="wd-bank">
+									<input class="magic-radio" name="radio" :id="item.id" value="option1" type="radio">
+									<label :for="item.id" @click="getCardInfo(item)"><span><img style="width: 126px;" :src="item.bankIcon"></span></label>
+								</div>
+								<div class="wd-bank">{{item.bankCardNo}}</div>
+								<div class="wd-bank text-right">单笔5万，单日20万</div>
+							</li>
+							<li v-for="item in bankListC">
+								<div class="wd-bank">
+									<input disabled="disabled" class="magic-radio" name="radio" :id="item.id" value="option1" type="radio">
+									<label :for="item.id"><span><img style="width: 126px;" :src="item.bankIcon"></span></label>
+								</div>
+								<div class="wd-bank">{{item.bankCardNo}}</div>
+								<div class="wd-bank text-right">单笔5万，单日20万</div>
+							</li>
+						</ul>
+					</div>
+					<div class="passw-input">
+						<p class="passAddress">
+							<span style="display:inline-block;text-align:right;color:#97a8be;background:#fbfdff;width:100px;padding:11px 10px 10px 10px;margin:0;border-bottom-left-radius:5px;border-top-left-radius:5px;">开户行所在地</span>
+							<el-select v-model="value1" placeholder="省份"style="width:145px;margin-left:-5px" id="province">
+								<el-option
+										v-for="item in options1"
+										:key="item.value"
+										:label="item.label"
+										:value="item.value"
+										:disabled="item.disabled">
+								</el-option>
+							</el-select>
+							<el-select v-model="value2" placeholder="城市" style="width:145px;" id="city">
+								<el-option
+										v-for="item in options2"
+										:key="item.value"
+										:label="item.label"
+										:value="item.value"
+										:disabled="item.disabled">
+								</el-option>
+							</el-select>
+						</p>
+						<p style="width:416px;">
+							<el-input placeholder="请输入开户行支行名称" v-model="subOpenBank">
+								<template slot="prepend">开户行支行名称</template>
+							</el-input>
+						</p>
+						<p class="inputWd">
+							<el-input placeholder="请输入充值金额" v-model="money" style="width: 416px;">
+								<template slot="prepend">充值金额</template>
+							</el-input>
+							<span><span id="unit">CNY</span></span>
+							<span class="correct2" v-if="errFlag"><img src="../../images/icon-error1.png">单笔5万，单日20万</span>
+							<br><i class="tip">按提现金额的0.1%收取手续费，最低收取0.1元/笔。</i>
+						</p>
+						<p class="inputWd">
+							<el-input type="password" placeholder="请输入支付密码" v-model="tranPwd" style="width: 416px;">
+								<template slot="prepend">支付密码</template>
+							</el-input>
+							<span  class="correct2" v-if="pwdFlag"><img src="../../images/icon-error1.png">{{errText}}</span>
+							<br><a class="forget-passw" @click="toPayPwdconditionVerify">忘记密码？</a>
+						</p>
+						<p><input name="" class="butt butt1" id="btLog" value="下一步" type="button" @click="withdrawApply"></p>
+
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('account_wd');
+	</script>
+
+	</body>
+
+</html>

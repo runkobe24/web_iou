@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/cardManage.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="main">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+        <div class="content" :style="{height:contentHeight+'px'}" v-cloak>
+            <div class="headTit" v-if="personalCard.length>0">
+                <span>个人账户：已添加 <a>{{personalCardLength}}</a> 张储蓄卡，<a>{{creditCardLength}}</a> 张信用卡</span>
+            </div>
+            <div class="personCard" v-if="personalCard.length>0">
+                <ul>
+                    <li v-for="item in personalCard">
+                        <p style="margin-top: 30px"><img class="bankLogo" :src="item.bankLogo"/><span class="cardType">{{item.cardType}}</span></p>
+                        <p style="margin-top: 46px"><span class="lastNum">尾号&nbsp;<span>{{item.lastNum}}</span></span> <a class="delete" @click="deleteCard(item.bankCardNo)">删除</a></p>
+                        <p style="margin-top: 10px"><span class="cardOwner">{{item.userName}}</span><button class="cardBtn" v-if="item.isDefault">默认银行卡</button><a class="setDefault" v-if="!item.isDefault" @click="setDefault(item.bankCardNo)">设为默认</a></p>
+                    </li>
+                    <li @click="toAddBankCard" style="text-align: center;cursor: pointer"><p style="margin-top: 72px;margin-left: 0px;"><img style="width: 36px;height: 36px;" src="../../images/addCard.png"/></p><span class="addCardText">添加银行账户</span></li>
+                </ul>
+            </div>
+            <div class="headTit" v-if="companyCard.length>0">
+                <span>对公账户：已添加 <a>{{companyCardLength}}</a> 个银行账户 </span>
+            </div>
+            <div class="companyCard" v-if="companyCard.length>0">
+                <ul>
+                    <li v-for="item in companyCard">
+                        <p style="margin-top: 30px"><img class="bankLogo" :src="item.bankLogo"/><span class="cardType">{{item.cardType}}</span></p>
+                        <p style="margin-top: 46px"><span class="lastNum">尾号&nbsp;<span>{{item.lastNum}}</span></span></p>
+                        <p style="margin-top: 10px"><span class="cardOwner">{{item.userName}}</span><button class="cardBtn" v-if="item.isDefault">默认银行卡</button><a class="setDefault" v-if="item.setDefault"  @click="setDefault(item.bankCardNo)">设为默认</a></p>
+                    </li>
+                    <li @click="toAddBankCard" style="text-align: center;cursor: pointer"><p style="margin-top: 72px;margin-left: 0px;"><img style="width: 36px;height: 36px;" src="../../images/addCard.png"/></p><span class="addCardText">添加银行账户</span></li>
+                </ul>
+            </div>
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript" src="../../plugins/public/header/header.js"></script>
+<script type="text/javascript">
+    load('cardManage');
+</script>
+</body>
+</html>

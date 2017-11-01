@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="Bookmark" href="favicon.ico">
+		<meta charset="UTF-8">
+		<title>交易记录-合并付款</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/trans.css" />
+	</head>
+	<script type="text/javascript">
+  </script>
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+
+		<fs-left></fs-left>
+		<div class="main">
+		<!--头部-->
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="pay-back">
+				<div class="main-cont">
+					<div class="list-info">
+						<div class="info-title">
+							<div class="f-l"><p>共合并<span class="font-blue">4</span>笔交易<span class="m-l25"><a id="dd" class="more" href="#">收起更多 ∨</a></span></p></div>
+							<div class="f-r pay-sum2">应付金额<span>CNY100.00</span></div>
+						</div>
+						<div id="vv" class="trans-list2" style="display:none;">
+							<div class="list2-title">
+								<ul><li>时间</li><li>交易摘要</li><li>交易单号</li><li>交易对方</li><li>金额</li><li>状态</li></ul>
+							</div>
+							<div class="list2-cont">
+								<ul class="list2-item">
+									<li><div class="li-box"><p>2017-12-06/16:35</p></div></li>
+									<li><div class="li-box text-left"><p>国际快递DHL-CN深圳-美国</p><p>订单号：WE01706003818</p></div></li>
+									<li><div class="li-box"><p>20170616*********</p></div></li>
+									<li><div class="li-box"><p>百运网</p></div></li>
+									<li><div class="li-box"><p>CNY 500.00</p></div></li>
+									<li><div class="li-box"><p>待付款</p></div></li>
+								</ul>
+								<ul class="list2-item">
+									<li><div class="li-box"><p>2017-12-06/16:35</p></div></li>
+									<li><div class="li-box text-left"><p>国际快递DHL-CN深圳-美国</p><p>订单号：WE01706003818</p></div></li>
+									<li><div class="li-box"><p>20170616*********</p></div></li>
+									<li><div class="li-box"><p>百运网</p></div></li>
+									<li><div class="li-box"><p>CNY 500.00</p></div></li>
+									<li><div class="li-box"><p>待付款</p></div></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="list-b">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="r4" value="option4">
+								<label for="r4"><span><img src="../../images/icons8-alipay.png"></span>支付宝支付</label>
+							</div>
+							<div class="prich">支付<span>CNY9920.00</span></div>
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="r3" value="option3">
+								<label for="r3"><span><img src="../../images/icons8-weixinpay.png"></span>微信支付</label>
+							</div>
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b no">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="rn" value="optionn" disabled>
+								<label for="rn"><span><img src="../../images/icons8-luck.png"></span>运条 可用额度<span>CNY80000.00</span></label>
+							</div>
+							<div class="prich">可用额度不足</div>
+							</dt>
+						</dl>
+					</div>
+
+					<div class="list-b no">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="rn" value="optionn" disabled>
+								<label for="rn"><span><img src="../../images/icons8-jpy.png"></span>账户余额<span>CNY80.00</span></label>
+							</div>
+							<div class="prich">账户余额不足</div>
+							</dt>
+						</dl>
+					</div>
+					<div class="pay-bank">
+						<div class="bank-title">网银支付</div>
+						<dl>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b1" value="option-b1"><label for="b1"><img src="../../images/bank1.png"></i></label></div>
+							</dt>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b2" value="option-b2"><label for="b2"><img src="../../images/bank2.png"></i></label></div>
+							</dt>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b3" value="option-b3"><label for="b3"><img src="../../images/bank3.png"></i></label></div>
+							</dt>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b4" value="option-b4"><label for="b4"><img src="../../images/bank4.png"></i></label></div>
+							</dt>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b5" value="option-b5"><label for="b5"><img src="../../images/bank5.png"></i></label></div>
+							</dt>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b6" value="option-b6"><label for="b6"><img src="../../images/bank6.png"></i></label></div>
+							</dt>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b7" value="option-b7"><label for="b7"><img src="../../images/bank7.png"></i></label></div>
+							</dt>
+							<dt>
+							<div><input class="magic-radio" type="radio" name="radio" id="b8" value="option-b8"><label for="b8"><img src="../../images/bank8.png"></i></label></div>
+							</dt>
+						</dl>
+					</div>
+
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	   </div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('trans_mer_payment');
+	</script>
+	</body>
+</html>

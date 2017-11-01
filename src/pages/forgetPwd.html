@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../plugins/elementUI/elementUi.css">
+
+</head>
+<body>
+<div class="outer" id="app" v-cloak>
+    <div class="header">
+        <div style="width:1200px;margin: auto">
+            <img class="logo" src="../images/byjfLogo.png" @click="fsby56()">
+            <a class="login" style="width: 100px;">重置登录密码</a>
+        </div>
+    </div>
+
+    <div class="formBox" style="margin-left: 0px;" v-cloak>
+        <!--表单-->
+        <div style="width:1200px;height:532px;background-color:#ffffff;margin:auto;text-align:center;">
+            <div class="formHeader">
+                <p style="width:360px;margin: auto;text-align: left;"><span style="font-size: 12px; position: relative;top: 14px;">请输入您需要重置登录密码的账户名：</span></p>
+            </div>
+            <div class="form_content">
+
+                <div style="margin-top: 15px;">
+                    <el-input placeholder="请输入手机号码" v-model="data">
+                        <el-select v-model="type" slot="prepend" placeholder="手机号" style="width:83px;">
+                            <el-option label="手机号" value="mobile"></el-option>
+                            <el-option label="用户名" value="loginName"></el-option>
+                            <el-option label="邮  箱" value="email"></el-option>SS
+                        </el-select>
+                    </el-input>
+                </div>
+
+                <div class="verBox" style="margin-top: 25px">
+                    <el-input placeholder="请输入验证码" v-model="securityCode">
+                        <template slot="prepend"><span>验证码</span></template>
+                        <template slot="append" style="background-color: #f8f8f8;padding: 0px;" ><div id="picCode"></div></template>
+                    </el-input>
+                </div>
+            </div>
+            <button class="signBtn" @click="next">下一步</button>
+
+        </div>
+    </div>
+    <div style="background-color: #f4f5f7;height: 110px;text-align: center;">
+        <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;position: relative;top: 50px;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+    </div>
+</div>
+<script type="text/javascript" src="../js/load.js"></script>
+<script type="text/javascript">
+    load('forgetPwd');
+</script>
+</body>
+</html>

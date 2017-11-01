@@ -1,0 +1,87 @@
+@charset "utf-8";
+/*初始化*/
+*{margin:0;padding:0;}
+body{margin:0px;padding:0px; font-size:14px; color:#333;font-family:"Microsoft Yahei";}
+table,td,input,select,textarea{ font-size:12px; color:#333; font-family:"Microsoft Yahei"; vertical-align:middle;}
+p,ul,li,input,form,h1,h2,h3,h4,h5,h6,dl,dd,dt{ margin:0; padding:0;}
+em{font-style:normal;}
+ul,li{margin:0px;padding:0px;list-style-type:none;}
+img{border:0; vertical-align:top;}
+h1,h2,h3,h4{ font-size:14px;}
+h5,h6{ font-size:12px;}
+a{outline:none;}
+.clearfix{zoom:1;}
+.clearfix:after{ content:"."; clear:both; height:0; visibility:hidden; display:block;}
+br{ height:10px; line-height:10px; font-size:0;}
+.hide{display:none;}
+.both{clear:both;}
+td{line-height:24px;word-wrap:break-word;word-break:break-all;}
+/*input:focus,textarea:focus{border:1px solid #1a61b9;}*/
+input{outline:0;}
+select{border:0;}
+
+/*输入框*/
+input:-moz-placeholder,textarea:-moz-placeholder{color: #999999;}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder{color: #999999;}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #999999;}
+::-webkit-input-placeholder {color: #999;}:-moz-placeholder {color: #999;}::-moz-placeholder {color: #999;}:-ms-input-placeholder {color: #999;}
+
+/*全局链接*/
+a{color:#666;text-decoration:none;}
+a:hover {color:#013365;text-decoration:none;}
+i,em{font-style:normal;}
+
+/*公用*/
+.byfc-ellipsis{overflow: hidden;white-space: nowrap;text-overflow: ellipsis}
+.location{font-size: 14px;padding: 20px 20px 0px 20px;}
+.location em{margin: 0px 10px; color: #ccc;font-family: "宋体";}
+.location span{color: #108EE9;font-weight: bold;}
+.m-l35{margin-left:35px;}
+.f-l{float:left;}
+.f-r{float:right;}
+
+/*******字体样式*******/
+.font-red{color:#Ff0000;}
+.font-red2{color:#Ff0000;font-weight:bold;}
+.font-white{color:#fff; }
+.font-white2{color:#fff;font-weight:bold;}
+.font-blue{color:#108ee9 !important;}
+.font-blue2{color:#108ee9 !important;font-weight:bold;}
+.font-blue3{color:#02bbee !important;}
+.font-gray{color:#999;}
+.font-gray2{color:#999;font-weight:bold;}
+.font-blue3
+
+/*--相关的单选复选按钮--*/
+@keyframes hover-color {from {border-color: #c0c0c0;}to {border-color: #3e97eb;}}
+.magic-radio,.magic-checkbox {position: absolute;display:none;}
+.magic-radio[disabled],.magic-checkbox[disabled] {cursor:not-allowed;}
+.magic-radio+label,.magic-checkbox+label {position: relative;display:block;padding-left:30px;cursor:pointer;vertical-align:middle;}
+.magic-radio+label:hover:before,.magic-checkbox+label:hover:before {animation-duration:0.4s;animation-fill-mode:both;animation-name:hover-color;}
+.magic-radio+label:before,.magic-checkbox+label:before {position:absolute;top:0;left:0;display:inline-block;width:18px;height:18px;content:'';border: 1px solid #c0c0c0;margin-top:2px;}
+.magic-radio+label:after,.magic-checkbox+label:after {position: absolute;display: none;content: '';}
+.magic-radio[disabled]+label,.magic-checkbox[disabled]+label {cursor: not-allowed;color: #e4e4e4;}
+.magic-radio[disabled]+label:hover,
+.magic-radio[disabled]+label:before,
+.magic-radio[disabled]+label:after,
+.magic-checkbox[disabled]+label:hover,
+.magic-checkbox[disabled]+label:before,
+.magic-checkbox[disabled]+label:after{cursor: not-allowed;}
+.magic-radio[disabled]+label:hover:before,
+.magic-checkbox[disabled]+label:hover:before {border:1px solid #e4e4e4;animation-name: none;}
+.magic-radio[disabled]+label:before,
+.magic-checkbox[disabled]+label:before {border-color:#e4e4e4;}
+.magic-radio:checked+label:before,
+.magic-checkbox:checked+label:before{animation-name:none;}
+.magic-radio:checked+label:after,
+.magic-checkbox:checked+label:after {display: block;}
+.magic-radio+label:before {border-radius: 50%;}
+.magic-radio+label:after {top:8px;left:6px;width:8px;height:8px;border-radius:50%;background:#3e97eb;}
+.magic-radio:checked+label:before {border: 1px solid #3e97eb;}
+.magic-radio:checked[disabled]+label:before {border: 1px solid #c9e2f9;}
+.magic-radio:checked[disabled]+label:after {background: #c9e2f9;}
+.magic-checkbox+label:before {border-radius: 3px;}
+.magic-checkbox+label:after {top: 2px;left: 7px;box-sizing: border-box;width: 6px;height: 12px;transform: rotate(45deg);border-width: 2px;border-style: solid;border-color: #fff;border-top: 0;border-left: 0;}
+.magic-checkbox:checked+label:before {border: #3e97eb;background: #3e97eb;}
+.magic-checkbox:checked[disabled]+label:before {border: #c9e2f9;background: #c9e2f9;}
+

@@ -1,0 +1,143 @@
+<!DOCYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>账户总览</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/animate.css">
+	<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+	<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+	<link rel="stylesheet" href="../../css/public.css">
+	<link rel="stylesheet" href="../../css/account-overview.css">
+</head>
+
+<body>
+	<div id="app">
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<div class="main" v-cloak>
+			<fs-header :header-parent-tit="parentHeadTit" :head-curr-tit="currHeadTit" @user-info-received="getUserStatus"></fs-header>
+			<div class="content" :style="{height:contentHeight+'px'}">
+				<div class="account-overview" v-cloak>
+					<div class="i-home">
+						<div class="i-left">
+							<div class="i-title">
+								<h3>账户余额</h3>
+							</div>
+							<div class="home-left">
+								<ul class="item-left">
+									<li class="lia">
+										<p>人民币账户</p>
+										<p><span @click="myCNY" style="cursor:pointer;"><span class="unit"><span id="unit">CNY</span></span><span> {{CNYBalance}}</span></span>
+										</p>
+										<p><a @click="toRecharge" class="hk-btn">充值</a><a @click="toWithdrawDeposit" class="hk-btn2">提现</a></p>
+									</li>
+								</ul>
+								<ul class="item-right line-gray">
+									<li class="lia">
+										<p>美元账户</p>
+										<p><span @click="myUSD" style="cursor:pointer;"><span class="unit" style="font-size: 14px">USD</span> <span>{{USDBalance | money}}</span></span>
+										</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="i-rigt m-r2">
+							<div class="i-title">运条</div>
+							<div class="home-left" v-cloak>
+								<ul class="item-left">
+									<li class="lib">
+										<p><em>待还款</em><a class="refund" @click="payBack" v-if="payBackText">{{ payBackText }}</a></p>
+										<p><span @click="myTerms" style="cursor:pointer;"><span><span id="unit">CNY</span></span><span> {{ payables }}</span></span>
+										</p>
+										<p v-if="iouStatus==4"><i>总额度：{{ currency }} {{ creditQuota }}</i><i>可用额度：{{ currency }} {{ balance }}</i></p>
+										<p v-if="iouStatus!=4"><i style="display: inline-block;">先发货，后付款</i><span style="font-size: 12px;float: right;position: relative;top: -13px;right: 18px;cursor: pointer" @click="gotoHelp">了解运条></span></p>
+									</li>
+								</ul>
+								<ul class="item-right line-gray">
+									<li class="lib">
+										<p><em>信用积分</em><a class="cre-details" href="account_credit.html">信用详情 <i>></i></a>
+										</p>
+										<p><span>{{creditScore}}</span></p>
+										<p><i>更新时间：{{updateTime}}</i></p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="i-home">
+						<div class="i-left2">
+							<div class="i-title">
+								<h3>最近交易记录</h3><span><a
+								@click="toTransRecord">查看全部交易记录<em> ></em></a></span></div>
+							<div class="trans-list">
+								<div class="list-title">
+									<ul>
+										<li>时间</li>
+										<li class="wid-1">类型</li>
+										<li class="wid-2">交易摘要</li>
+										<li>金额</li>
+										<li>状态</li>
+										<li>操作</li>
+									</ul>
+								</div>
+								<div class="list-cont">
+									<ul class="list-item" v-for="item in tranRecords">
+										<li>
+											<div class="li-box">
+												<p>{{item.createTime}}</p>
+											</div>
+										</li>
+										<li class="cont-wid-1">
+											<div class="li-box">
+												<p>
+													{{item.tranType=='Pay'?'支付':item.tranType=='Topup'?'充值':item.tranType=='Withdrawal'?'提现':item.tranType=='Repay'?'还款':item.tranType=='Refund'?'退款':''}}</p>
+											</div>
+										</li>
+										<li class="cont-wid-2">
+											<div class="li-box text-left">
+												<p>{{item.tranDigest}}</p>
+											</div>
+										</li>
+										<li>
+											<div class="li-box">
+												<p><span>{{item.currency}}{{item.tranType=='Topup'?'+':item.tranType=='Refund'?'+':'-'}}{{item.amount}}</span>
+												</p>
+											</div>
+										</li>
+										<li>
+											<div class="li-box wid2">
+												<p>
+													{{item.status=='S'?'交易成功':item.status=='W'?'待付款':item.status=='C'?'交易关闭':item.status=='P'?'交易关闭':''}}</p>
+											</div>
+										</li>
+										<li>
+											<div class="li-box">
+												<p><input name="weight" v-if="item.status=='W'" class="butt butt3" value="付款" type="button" @click="toPay(item)">
+													<p>
+														<p><input name="weight" class="butt butt4" value="详情" type="button" @click="toDetail(item)"></p>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+					<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+		load('account_overview');
+	</script>
+
+</body>
+
+</html>

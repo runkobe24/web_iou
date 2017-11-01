@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/personApprove.css">
+</head>
+<style>
+    .el-input-group__prepend{text-align:center;letter-spacing:0;padding:0 10px;}
+</style>
+<body>
+<div id="app">
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="main">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>
+        <!--<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent"></fs-header>-->
+
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="form_div">
+                <ul>
+                    <li><span class="formTit">请确保您本人信息真实有效，认证成功后不可修改</span></li>
+                    <li>
+                        <el-input v-model="realName" style="margin-top: 20px" placeholder="请输入内容">
+                            <template slot="prepend">真&nbsp;实&nbsp;姓&nbsp;名</template>
+                        </el-input>
+                        <span class="tip-text"><img class="tips-info" src="../../images/param-info.png"/>为确保您的账户安全，请填写您身份证上的姓名</span>
+                    </li>
+                    <li>
+                        <el-input v-model="idNo" style="margin-top: 10px" placeholder="请输入身份证号">
+                            <template slot="prepend">身&nbsp;份&nbsp;证&nbsp;号</template>
+                        </el-input>
+                    </li>
+                    <li>
+                        <el-input v-model="bankCardNo" style="margin-top: 25px" placeholder="请输入银行卡号">
+                            <template slot="prepend">银&nbsp;行&nbsp;卡&nbsp;号</template>
+                        </el-input>
+                        <span class="tip-text"><img class="tips-info" src="../../images/param-info.png"/>请输入以您本人姓名开户的银行卡，输入卡号后将自动识别银行和卡种</span>
+                    </li>
+                    <li>
+                        <el-input v-model="bankMobile" style="margin-top: 9px" placeholder="请输入预留手机号">
+                            <template slot="prepend">预留手机号</template>
+                        </el-input>
+                        <span class="tip-text"><img class="tips-info" src="../../images/param-info.png"/>请填写您在银行预留的手机号码，以验证银行卡是否属于您本人</span>
+                        <hr style="margin-top: 25px;opacity: 0.2; border: solid 1px #979797;width: 400px;">
+                    </li>
+                    <li style="margin-top: 16px;">
+                        <span class="bind-info">为保护账户安全，需要通过您绑定手机号<em style="color: #108ee9">{{loginPhone}}</em>的验证：</span>
+                        <div class="verBox">
+                            <el-input v-model="securityCode" style="margin-top: 12px" placeholder="请输入内容">
+                                <template slot="prepend">短信验证码</template>
+                                <template slot="append"><p @click="sendAuthCode()" style="height: 37px;line-height: 2.7;width: 90px;">{{autoCode}}</p></template>
+                            </el-input>
+                        </div>
+                    </li>
+                    <li><a style="font-family:'Microsoft YaHei';margin-top:5px;font-size: 12px;text-align: left;color: #108ee9;">《百运金服用户注册协议》</a></li>
+                    <li style="margin-top: 66px;">
+                        <button class="sure" @click="paramVerify">同意协议并确定</button>
+                    </li>
+                </ul>
+            </div>
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript" src="../../plugins/public/header/header.js"></script>
+<script type="text/javascript">
+    load('personApprove');
+</script>
+</body>
+</html>

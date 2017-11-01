@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百运金服</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<!--首页-->
+    <div id="app" class="outer" v-cloak>
+        <div class="header" v-cloak>
+            <ul>
+                <li style=" margin-left: 5%;"><p style="margin-right: 23px;margin-top: 6px;">您好，<span>{{userName}}</span><a v-show="loginFlag" class="loginOut" @click="loginOut()">退出</a></p></li>
+                <li><p style="margin-right: 23px;margin-left: 23px;margin-top: 4px;"><img style="width:15px;height:15px;position: relative;top: 3px;left: -4px;" src="images/whitePhone.png"/><span>400 926 8156  </span></p></li>
+                <li><p style="margin-right: 23px;margin-left: 23px;margin-top: 7px;"><a style="color:#ffffff;">关于我们 </a></p></li>
+                <li><p style="margin-right: 23px;margin-left: 23px;margin-top: 7px;"><a style="color:#ffffff;" @click="toHowToUse()">使用指南 </a></p></li>
+                <li><p style="margin-right: 23px;margin-left: 23px;margin-top: 6px;"><img style="width:14px;height:14px;position: relative;top: 2px;left: -4px;" src="images/logo.png"/><a style="color:#ffffff;" @click="toBy56()">百运网</a></p></li>
+            </ul>
+        </div>
+        <!--<div class="logoBox">
+            <img src="images/byjfLogo.png"/>
+        </div>-->
+        <div style="overflow: hidden" :style="{height:contentHeight+'px'}">
+            <!--首页banner-->
+            <div class="flexslider">
+                <img class="logo" src="images/byjfLogo.png" v-cloak/>
+                <ul class="slides" v-cloak>
+                    <li style="margin-top: -1px" class="loginLi" :style="{height:contentHeight+'px'}">
+                        <p><img src="images/loginText.png"/></p>
+                        <P style="margin-top: 60px;">
+                            <button v-show="!loginFlag" class="loginBtn" @click="showLogin()">登录</button>
+                            <button v-show="!loginFlag"  class="registerBtn" @click="toRegister()">注册</button>
+                            <button v-show="loginFlag" class="loginBtn" @click="toMyAccount()"><p style="position: relative;top: -9px;"><span>进入我的账户</span><img src="images/indexLeftArrow.png" style="width: 9px;height:13px;position:relative;left: 15px;"/></p></button>
+                        </P>
+                    </li>
+                    <li class="registerIou" :style="{height:contentHeight+'px'}">
+                        <div class="banner2Inner">
+                            <p><img src="images/banner2Text.png"/></p>
+                            <p class="explain" style="margin-top: 50px;">在线申请，为实名客户提供信用额度。</p>
+                            <p class="explain">授信快，额度高，更有机会享免息。</p>
+                        </div>
+                    </li>
+                    <li  style="margin-bottom: 1px;" class="useIt" :style="{height:contentHeight+'px'}">
+                        <div class="banner3Inner">
+                            <p><img src="images/banner3Text.png"/></p>
+                            <p class="explain" style="margin-top: 30px;">货款未到，资金不足？担心“给钱又给货”？</p>
+                            <p class="explain">当月发货，可下月付款，为您提供最长40天账期。</p>
+                            <p style="margin-top: 30px;text-align: left"><button @click="openIou" class="openNow2">立即开通</button></p>
+                        </div>
+                        <div class="loginFoot" :style="{marginTop:footMarginTop+'px'}">
+                            <p>©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <a class="up" @click="moveUp()" v-show="!(pageNum==3)"><img src="images/down.png"/></a>
+                <a class="down" @click="moveDown()" v-show="!(pageNum==1)"><img src="images/up.png"/></a>
+                <ul class="pageList">
+                    <li><div :class="{active:pageNum==1}" @click="toOne"></div></li>
+                    <li><div :class="{active:pageNum==2}" @click="toTwo"></div></li>
+                    <li><div :class="{active:pageNum==3}" @click="toThree"></div></li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </div>
+ <!--登录弹窗-->
+    <div id="loginAlert" class="cover animated fadeIn" v-show="visible" style="width:100%;display:none" v-cloak>
+    <div class="cover-bg" @click="hideLogin"></div>
+    <div class="login_form">
+        <img style="width: 84%;margin-left: 8%; display: block" src="../images/form-head.png">
+        <img src="../images/fsLogo.png" style="width:67px;height:67px;position: absolute;top: 59px;left: 191px;"/>
+        <img @click="hideLogin" src="../images/close.png" style="position:absolute;float:right;top:6px;right:6px;cursor:pointer;"/>
+        <ul style="text-align:center; margin-bottom:12%" v-cloak >
+            <li>
+                <el-input style="height: 40px;width:76%;margin-top: 76px;" placeholder="请输入手机号" :maxlength="11" v-model="userName">
+                    <template style="height: 40px;width: 21.7%" slot="prepend"><img src="../images/user.png"/></template>
+                </el-input>
+            </li>
+            <li style="height: 15px;text-align: center">
+                <p style="color:red; font-size: 10px;width:326px;display: none" v-text="errMsg" v-show="errFlag"></p>
+            </li>
+            <li>
+                <el-input style="height: 40px;width: 76%;margin-top: 10px;" type="password" placeholder="请输入密码" v-model="password">
+                    <template style="width: 21.7%" slot="prepend"><img src="../images/password.png"/></template>
+                </el-input>
+            </li>
+            <li style="margin-top:2%;">
+                <a class="link" style="margin-right: 46%;" @click="forgetPwd">忘记密码？</a>
+                <a class="link" @click="toRegister"><img src="../images/rightArrow.png" style="position: relative;top: 4px;right: 6px;"/>立即注册</a>
+            </li>
+            <li style="margin-top:10%;">
+                <el-button style="width: 73%;border-radius: 100px;height: 36px;" type="primary" @click="paramVerify" @keyup.enter="paramVerify">登录</el-button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/load.js"></script>
+<script type="text/javascript">
+    load('index');
+</script>
+</body>
+</html>

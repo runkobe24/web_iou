@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开通运条</title>
+    <link rel="stylesheet" href="../../css/openIou.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+</head>
+<body>
+<div class="outer" id="app" v-cloak>
+        <fs-left style="height:570px;position:fixed;left:0;top:0;"></fs-left>
+    <!-- <div class="header">
+        <div style="width:1200px;margin:auto">
+            <img class="logo" src="../../images/byjfLogo.png"  @click="fsby56()"><a class="login">开通运条</a>
+            <span style="float: right;margin-top: 22px">
+              <a class="hasNum">您好，<span>{{userName}}</span></a>
+              <a class="pleaseLogin" style="color:#108ee9;" @click="loginOut">退出</a>
+              <div style="display:inline-block;border-left:1px solid #ccc;width:1px;height: 11px;"></div>
+              <a class="toFirstPage" @click="toIndex">我的账户</a>
+        </span>
+        </div>
+    </div> -->
+    <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto" style="background:white;margin:0;height:68px;position:fixed;left:0;top:0;"></fs-header>
+    <div class="content" style="height:450px;overflow:visible;">
+        <!--表单-->
+        <div class="account-overview" style="padding:40px;">
+            <div class="form_content">
+                
+                <ul>
+                    <li>
+                        <p class="openText1">开通运条后，可获得运条总额度:<span>CNY5000.00</span></p>
+                        <p class="openText2">额度可循坏使用，当月用，下月最晚还款日前还清即可</p>
+                    </li>
+                    <li><el-input  v-model="userName" disabled>
+                        <template slot="prepend">用&nbsp;户&nbsp;名</template>
+                    </el-input></li>
+                    <li>
+                        <el-input placeholder="请输入支付密码" v-model="tranPwd" type="password">
+                            <template slot="prepend">支付密码</template>
+                        </el-input>
+                    </li>
+                </ul>
+                
+                <el-checkbox v-model="ifChecked" class="agree" >我已阅读并同意<a>《运条服务协议》</a></el-checkbox>
+                <p><button class="signBtn" @click="checkPayPwd">确认开通</button></p>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+    <div style="background:#f4f5f7;height:110px;text-align:center;">
+        <span style="opacity:0.7;font-family:'Microsoft YaHei';font-size:14px;text-align: left;color:#000000;position:relative;top: 50px;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+    </div>
+</div>
+<div id="cover" class="tips" v-show="msgboxFlag">
+    <el-alert :title="msgText" :type="msgType" show-icon></el-alert>
+</div>
+<script type="text/javascript" src="/js/load.js"></script>
+<script type="text/javascript">
+    load('openIou');
+</script>
+</body>
+</html>

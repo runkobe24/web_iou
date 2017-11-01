@@ -1,0 +1,46 @@
+.tit{
+    height: 116px;
+}
+.titText{
+    font-size: 16px;
+    text-align: left;
+    color: #000000;
+    position: relative;
+    top: 60px;
+    left: 14.7%;
+}
+.payPw{
+    height: 75px;
+    border-radius: 5px;
+    background-color: #f6f6f7;
+    border: solid 1px #ececec;
+    margin-left: 14.7%;
+    margin-right: 14.7%;
+}
+.payPw img{
+    width: 30px;
+    height: 37px;
+    position: relative;
+    top: 18px;
+    left: 30px;
+}
+.payPw button{
+    width: 90px;
+    height: 30px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    color:#ffffff;
+    position: relative;
+    right: 50px;
+    top: -17px;
+    border:none;
+}
+.help{
+    font-size: 12px;
+    color: #108ee9;
+    position: relative;
+    top: 70px;
+}
+button:hover{
+    background-color:#1074bc
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/companyApprove.css">
+</head>
+<style>
+    .el-input-group__prepend{width:100px;text-align:center;letter-spacing:0;padding:0 10px;}
+</style>
+<body>
+<div id="app">
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <div class="main">
+        <!--头部-->
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto"></fs-header>
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="line" v-cloak>
+                <div class="lineInner">
+                    <div class="lineHeader">
+                        <img :src="step1"/>
+                        <div></div>
+                        <img :src="step2"/>
+                        <div></div>
+                        <img :src="step3"/>
+                    </div>
+                    <div class="lineFooter">
+                        <p>
+                            <span class="text" style="float: left;margin-left: -5px;margin-top: 4px;">填写企业信息</span>
+                            <span class="text"style="margin-left: 20px;">填写银行账户信息</span>
+                            <span class="text" style="float: right;position: relative;right: -11px;top: 4px;">填写申请人信息</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--第一步-->
+            <div class="form_div" v-cloak v-if="stepNum1">
+                <ul>
+                    <li>
+                        <el-input v-model="company_name" @blur="companyNameValid" placeholder="请输入企业名称">
+                            <template slot="prepend">企&nbsp;业&nbsp;名&nbsp;称</template>
+                        </el-input>
+                        <span class="tip-text"><img class="tips-info" src="../../images/param-info.png"/>请填写营业执照上的企业全称</span>
+                        <div v-if="!showSuggestion.entName" class="error" style="top: 10px;">名称为空</div>
+                    </li>
+                    <li>
+                        <el-input @blur="verifyRegistrationNo" v-model="biz_license_no" style="margin-top: 10px" placeholder="请输入营业执照注册号">
+                            <template slot="prepend">营业执照注册号</template>
+                        </el-input>
+                        <div v-if="!showSuggestion.regNum" class="error" style="top: 20px;">注册号为空</div>
+                    </li>
+                    <li>
+                        <el-input v-model="fileName" style="margin-top: 25px;height: 40px;" readonly placeholder="请上传营业执照扫描件"></el-input>
+                        <el-upload
+                                class="chooseBtn"
+                                action="https://fs.by56.com/acc/fileUpload/upload"
+                                :data="uploadData"
+                                :show-file-list="false"
+                                :on-success="handleAvatarSuccess"
+                                :before-upload="beforeAvatarUpload">
+                            选择文件
+                        </el-upload>
+
+                        <span class="tip-text"><img class="tips-info" src="../../images/param-info.png"/>请上传营业执照清晰彩色原件扫描件或数码照<br />支持.jpg .jpeg .png格式照片，大小不超过5M。</span>
+                        <div v-if="!showSuggestion.file" class="error" style="top: 35px;">文件为空</div>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <el-input v-model="legal_person_name" @blur="legalNameValid" placeholder="请输入法人姓名">
+                            <template slot="prepend">法&nbsp;人&nbsp;姓&nbsp;名</template>
+                        </el-input>
+                        <div v-if="!showSuggestion.lawName" class="error" style="top: 11px;">姓名为空</div>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <el-input v-model="legal_person_id" @blur="legalIdValid" placeholder="请输入法人身份证号">
+                            <template slot="prepend">法人身份证号</template>
+                        </el-input>
+                        <div v-if="!showSuggestion.idNum" class="error" style="top: 10px;">身份证号为空</div>
+                    </li>
+                    <li style="margin-top: 20px; z-index: 1;">
+                        <p style="padding-bottom: 10px; color: #97a8be">公司地址：</p>
+                        <el-select v-model="value1" placeholder="省份" style="float:left;width: 126px;" id="province">
+                            <el-option
+                                    v-for="item in options1"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled">
+                            </el-option>
+                        </el-select>
+                        <el-select v-model="value2" placeholder="城市" style="float:left;width: 126px;margin-left: 11px" id="city">
+                            <el-option
+                                    v-for="item in options2"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled">
+                            </el-option>
+                        </el-select>
+                        <el-select v-model="value3" placeholder="城区"  style="float:left;width: 126px;margin-left: 11px" id="area">
+                            <el-option
+                                    v-for="item in options3"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled">
+                            </el-option>
+                        </el-select>
+                        <div v-if="!showSuggestion.selectAddress" class="error" style="top: 40px;">请选择地址</div>
+                    </li>
+                    <li>
+                        <el-input v-model="compnay_location_detail" @blur="detailAddressValid" style="margin-top: 20px" placeholder="请输入详细地址">
+                        </el-input>
+                        <div v-if="!showSuggestion.detailAddress" class="error" style="top: 70px;">地址为空</div>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <el-input v-model="office_tel" @blur="telephoneValid" placeholder="请输入电话">
+                            <template slot="prepend">办&nbsp;公&nbsp;电&nbsp;话</template>
+                        </el-input>
+                        <div v-if="!showSuggestion.phoneNum" class="error" style="top: 10px;">电话号码为空</div>
+                    </li>
+                    <li style="margin-top: 66px;">
+                        <button class="sure" @click="next1">下一步</button>
+                    </li>
+                </ul>
+            </div>
+            <!--第二步-->
+            <div class="form_div" v-cloak v-if="stepNum2">
+                <ul>
+                    <li>
+                        <span class="headTit">银行账户类型：</span>
+                        <ul class="accountTypeList">
+                            <li @click="switchRadio1">
+                                <input class="magic-radio" name="radio" id="r4" value="corporateAccount" type="radio" :checked="isChecked">
+                                <label for="r4"><span>对公账户</span></label>
+                            </li>
+                            <li style="margin-left: 50px" @click="switchRadio2">
+                                <input class="magic-radio" name="radio" id="r5" value="personalAccount" type="radio" :checked="!isChecked">
+                                <label for="r5"><span>个人账户</span></label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li v-if="isChecked">
+                        <el-input v-model="company_name" placeholder="企业开户名：深圳市百运科技有限公司" disabled></el-input>
+                    </li>
+
+                    <li style="margin-top: 20px" v-if="isChecked">
+                        <el-input v-model="bank_name" placeholder="请输入开户银行">
+                            <template slot="prepend">开户银行</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="isChecked">
+                        <el-input v-model="bank_card_id" placeholder="请输入企业对公银行账号">
+                            <template slot="prepend">对公银行账号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="!isChecked">
+                        <el-input placeholder="请输入真实姓名" v-model="real_name">
+                            <template slot="prepend">真实姓名</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="!isChecked">
+                        <el-input  placeholder="请输入身份证号" v-model="id_no">
+                            <template slot="prepend">身份证号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="!isChecked">
+                        <el-input  placeholder="请输入银行卡号" v-model="bank_card_id">
+                            <template slot="prepend">银行卡号</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px" v-if="!isChecked">
+                        <el-input placeholder="请输入预留手机号"  v-model="pre_phone">
+                            <template slot="prepend">预留手机号</template>
+                        </el-input>
+                    </li>
+
+                    <li style="margin-top: 66px;">
+                        <button class="sure" @click="next2">下一步</button>
+                        <button class="last" @click="last1">上一步</button>
+                    </li>
+                </ul>
+            </div>
+            <!--第三步-->
+            <div class="form_div" v-cloak v-if="stepNum3">
+                <ul>
+                    <li>
+                        <el-input v-model="apply_name" placeholder="请输入申请人姓名">
+                            <template slot="prepend">申请人姓名</template>
+                        </el-input>
+                    </li>
+                    <li style="margin-top: 20px">
+                        <el-input v-model="apply_phone" placeholder="请输入申请人手机号">
+                            <template slot="prepend">申请人手机号</template>
+                        </el-input>
+                    </li>
+                    <li>
+                        <el-input disabled style="margin-top: 25px;height: 40px;" placeholder="请上传法人授权委托书" v-model="fileName2">
+
+                        </el-input>
+                        <el-upload
+                                class="chooseBtn"
+                                action="https://fs.by56.com/acc/fileUpload/upload"
+                                :data="uploadData2"
+                                :show-file-list="false"
+                                :on-success="handleAvatarSuccess2"
+                                :before-upload="beforeAvatarUpload">
+                            选择文件
+                        </el-upload>
+                        <span class="tip-text"><img class="tips-info" src="../../images/param-info.png"/>请上传加盖企业公章的法人授权委托书原件照片或扫描件。<br>支持.jpg .jpeg .png格式的文件，大小不超过5M。</span>
+                    </li>
+                    <li style="margin-top: 66px;">
+                        <button class="sure" @click="sure">同意协议并确认</button>
+                        <button class="last" @click="last2">上一步</button>
+                    </li>
+                </ul>
+            </div>
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px" v-cloak>
+                <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript">
+    load('companyApprove');
+</script>
+</body>
+</html>

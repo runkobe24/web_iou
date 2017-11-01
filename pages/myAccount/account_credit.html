@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>账户总览-信用详情</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/animate.css">
+	<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+	<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+	<link rel="stylesheet" href="../../css/public.css">
+	<link rel="stylesheet" href="../../css/account-overview.css">
+</head>
+
+<body>
+	<div id="app">
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<!--头部-->
+		<div class="main">
+			<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" @user-info-received="processUserInfo"></fs-header>
+			<div class="content" :style="'height: ' + contentHeight + 'px'">
+				<div class="account-overview" v-cloak>
+					<div class="cre-box">
+						<div class="cre-item">
+							<div class="i-title">
+								<h3>我的信用</h3>
+							</div>
+							<div class="item-box">
+								<ul>
+									<li>
+										<h4>我的信用积分</h4><span class="eval-time">评估时间：{{ evalDate }}</span></li>
+									<li><span class="integral">{{ creditScore }}</span><a class="inte-arrow" href=""><img v-if="evalPic" :src="evalPic"></a></li>
+									<li>上月信用积分：{{ creditScoreLastMonth }}</li>
+								</ul>
+							</div>
+						</div>
+						<div class="cre-item m-r2">
+							<div class="i-title">
+								<h3>信用权益</h3>
+							</div>
+							<div class="item-box">
+								<ul>
+									<li>
+										<h4>开通运条</h4>
+									</li>
+									<li>
+										<p class="explain">先发货后付款，享免息</p>
+										<p class="explain">信用达“365分”</p>
+									</li>
+									<li v-if="iouActivated != 4"><a class="kt-btn" href="../myIou/openIou.html">立即开通</a></li>
+									<li v-else><a class="kt-btn" href="../myIou/my_luck.html">查看运条</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="cre-box">
+						<div class="cre-item2">
+							<div class="i-title">
+								<h3>如何提升信用积分</h3>
+							</div>
+							<div class="item2-box">
+								<ul>
+									<li>
+										<p><img src="../../images/icons-appr.png" width="47" height="55"></p>
+										<p>实名认证</p>
+										<p v-if="autorized === 'N' || autorized === 'F'"><a class="kt-btn" href="../accountSetting/authentication.html">立即认证</a></p>
+										<p v-else-if="autorized === 'S'"><a class="kt-btn-ok" href="#"><img src="../../images/icons-try.png" width="16" height="16">已认证</a></p>
+										<p v-else-if="autorized === 'I'"><a class="kt-btn-ok" href="#">正在审核</a></p>
+										<p v-else></p>
+									</li>
+									<li>
+										<p><img src="../../images/icons-email.png" width="55" height="47"></p>
+										<p>绑定邮箱</p>
+										<p v-if="!emailBound"><a class="kt-btn" href="../accountSetting/updateEmail.html">立即绑定</a></p>
+										<p v-else><a class="kt-btn-ok" href="" @click.prev><img src="../../images/icons-try.png" width="16" height="16">已绑定</a></p>
+									</li>
+									<li>
+										<p><img src="../../images/icons-shm.png" width="60" height="42"></p>
+										<p>合规走货，多发货</p>
+										<p><a class="kt-btn" href="http://www.by56.com/">去发货</a></p>
+									</li>
+									<li>
+										<p><img src="../../images/icons-str.png" width="42" height="46"></p>
+										<p>使用运条，按期还款</p>
+										<p v-if="iouActivated != 4"><a class="kt-btn" href="../myIou/openIou.html">立即开通</a></p>
+										<p v-else-if="iouActivated == 4 && !iouPaid"><a class="kt-btn" href="../myIou/pay_back.html">去还运条</a></p>
+										<p v-else><a class="kt-btn-ok" href="" @click.prev><img src="../../images/icons-try.png" width="16" height="16">本月已还</a></p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="cre-box">
+						<div class="cre-item2">
+							<div class="i-title">
+								<h3>了解信用积分</h3>
+							</div>
+							<div class="item3-box">
+								<p><span><img src="../../images/icons-parse.png" width="30" height="30"></span><b>资料完善度-</b>我们会从您的实名情况、是否绑定邮箱等进行考察。提供真实、完整的信息，有助于提升您的信用。</p>
+								<p><span><img src="../../images/icons-airpla.png" width="30" height="30"></span><b>走货行为-</b>评估您的发货行为是否合规，是否符合国家的法律法规。</p>
+								<p><span><img src="../../images/icons-order.png" width="30" height="30"></span><b>订单数据-</b>基于您最近12个月发货的订单金额、次数、频率等，将其进行量化来进行评估、近期发货订单记录越多，越有助于提升您的信用积分。</p>
+								<p><span><img src="../../images/icons-handle.png" width="30" height="30"></span><b>信用历史-</b>我们会从您使用金融产品的过往履约和违约情况进行评估。保持好的履约记录，讲有助于您获得更高的信用积分。</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+					<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+		load('account_credit');
+	</script>
+</body>
+
+</html>

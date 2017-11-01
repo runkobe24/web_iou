@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<link rel="Bookmark" href="favicon.ico">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>交易记录-付款</title>
+		<link rel="stylesheet" href="../../css/public.css">
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/animate.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+		<link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+		<link rel="stylesheet" href="../../css/trans.css"/>
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<!--左菜单-->
+		<fs-left></fs-left>
+		<!--头部-->
+		<div class="main">
+		<fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto"></fs-header>
+		<div class="content" :style="{height:contentHeight+'px'}">
+			<div class="pay-back">
+				<div class="main-cont">
+					<div class="list-info" v-if="tansNum==1">
+						<div class="f-l" v-cloak>
+							<p>交易摘要：{{transDetail.transDigest}}</p>
+							<p>交易对方：百运网</p>
+							<label id="more-text" v-if="showDetail">
+								<p>交易单号：{{transDetail.tranNo}}</p>
+								<p>交易金额：<span id="unit">CNY</span> {{transDetail.tranAmount}}</p>
+								<p>时间：{{transDetail.createTime}}</p>
+							</label>
+							<p class="m-tb10"><a class="more" @click="toggleBtn">{{buttonText}}</a></p>
+						</div>
+						<div class="f-r pay-sum">应付金额<span><span id="unit">CNY</span>{{transDetail.tranAmount}}</span></div>
+					</div>
+					<div class="list-info" v-if="tansNum>1">
+						<p>共合并{{tansNum}}笔交易
+						<span class="f-r" style="color: #108ee9">应付金额<span>
+						<span id="unit">CNY</span>{{transDetail.tranAmount}}</span>
+						</span>
+						</p>
+
+					</div>
+					<div class="list-b" v-if="!isIouEnough">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="r0" value="option1" checked>
+								<label for="r0"><span><img src="../../images/icons8-luck.png"></span>运条支付<span><span id="unit">CNY</span>{{avaliableQuata}}</span></label>
+							</div>
+							<!--<div class="prich">支付<span><span id="unit">CNY</span>{{transDetail.tranAmount}}</span></div>-->
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b" v-if="!isEnough">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" id="r1" value="option1">
+								<label for="r1"><span><img src="../../images/icons8-jpy.png"></span>账户余额<span><span id="unit">CNY</span>{{balance}}</span></label>
+							</div>
+							<!--<div class="prich">支付<span><span id="unit">CNY</span>{{transDetail.tranAmount}}</span></div>-->
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b" v-for="item in thirdPay">
+						<dl>
+							<dt>
+							<div class="subtitle">
+								<input class="magic-radio" type="radio" name="radio" :id="item.id" value="option2">
+								<label :for="item.id"><span><img :src="item.icon"></span>{{item.payType}}</label>
+							</div>
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b no" v-if="isEnough">
+						<dl>
+							<dt>
+							<div>
+								<input class="magic-radio" type="radio" name="radio" id="rn" value="optionn" disabled>
+								<label for="rn">账户余额<span>CNY{{balance}}</span></label>
+							</div>
+							<div class="prich" style="position: relative;top: -20px;">账户余额不足</div>
+							</dt>
+						</dl>
+					</div>
+					<div class="list-b no" v-if="isIouEnough">
+						<dl>
+							<dt>
+							<div>
+								<input class="magic-radio" type="radio" name="radio" value="optionn" disabled>
+								<label for="rn">可用额度<span>CNY{{avaliableQuata}}</span></label>
+							</div>
+							<div class="prich" style="position: relative;top: -20px;">运条额度不足</div>
+							</dt>
+						</dl>
+					</div>
+					<div class="pay-bank">
+						<div class="bank-title">网银支付　仅支持使用储蓄卡还款</div>
+						<dl>
+							<dt v-for="item in bankList">
+							<div class="subtitle"><input class="magic-radio" type="radio" name="radio" :id="item.id" value="option-b1"><label :for="item.id"><img :src="item.icon"></i></label></div>
+							</dt>
+						</dl>
+					</div>
+					<div class="pay-input-passw">
+						<div class="passw-input">
+							<p v-if="pwdFlag">
+								<el-input placeholder="请输入支付密码" style="width: 332px;" type="password" v-model="payPassword">
+									<template slot="prepend">支付密码</template>
+								</el-input>
+								<span id="bycor" class="correct2"><img src="../../images/icon-error1.png" v-if="errFlag">{{errText}}</span>
+								<br /><a class="forget-passw" @click="toUpdatePayPw">忘记密码？</a>
+							</p>
+							<p><input name="" class="butt butt1" id="btLog" value="确认付款" type="button" @click="combinePay"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+				<span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+			</div>
+		</div>
+	    </div>
+	</div>
+	<div id="recharge">
+
+	</div>
+	<script type="text/javascript" src="../../js/load.js"></script>
+	<script type="text/javascript">
+        load('trans_payment');
+	</script>
+	</body>
+</html>

@@ -1,0 +1,177 @@
+html,body,div,p,a,h3,span,button,input{
+    font-family:"Microsoft YaHei";
+}
+body{
+    width:100%;
+}
+#app{
+
+}
+.content{
+    background-color: #ffffff;
+    overflow: auto;
+}
+/*webkit 滚动条宽度设置*/
+::-webkit-scrollbar{
+    width:0px;
+}
+.lineHeader{
+    text-align: center;
+}
+.lineHeader img{
+    width: 38px;
+    height: 38px;
+}
+.lineHeader div{
+    display: inline-block;
+    height: 2px;
+    width: 195px;
+    background: #9b9b9b;
+    margin-bottom: -5px;
+}
+.lineFooter{
+    text-align: center;
+}
+.lineFooter p{
+    width: 543px;
+    margin: auto;
+}
+.lineFooter span{
+    opacity: 0.7;
+    font-size: 12px;
+    text-align: center;
+    color: #9b9b9b;
+}
+.line{
+    margin-top: 72px;
+    margin-bottom: 60px;
+}
+.form_div{
+    text-align: center;
+    background-color: #ffffff;
+    min-width: 1200px;
+}
+.form_div ul{
+    margin: 0 auto;
+    width:400px;
+}
+.form_div ul li{
+    text-align: left;
+}
+.formTit{
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    color: #f00404;
+}
+.tips-info{
+    width:12px;
+    height: 12px;
+    position: relative;
+    vertical-align: middle;
+}
+.tip-text{
+    opacity: 0.3;
+    font-family: "Microsoft YaHei";
+    font-size: 11px;
+    text-align: left;
+    color: #000000;
+
+}
+.bind-info{
+    font-family: "Microsoft YaHei";
+    font-size: 11px;
+    text-align: left;
+    color: #000000;
+}
+.sure{
+    width: 140px;
+    height: 36px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    font-family: "Microsoft YaHei";
+    color: #ffffff;
+    border:none;
+}
+.chooseBtn{
+    float: right;
+    width: 120px;
+    height: 32px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    border:none;
+    color: #ffffff;
+    position: relative;
+    top: -36px;
+}
+.last{
+    background-color: #ffffff;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    border:none;
+    color: #108ee9;
+    margin-left: 50px;
+}
+.last:hover{
+    background-color: #ffffff;
+}
+.accountTypeList{
+    position: relative;
+    top: -20px;
+    left: 90px;
+    margin-left: 10px;
+}
+.accountTypeList li{
+    float: left;
+}
+.headTit{
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    text-align: right;
+    color: #000000;
+
+}
+.magic-radio+label:before{
+    position: absolute;
+    top: 0;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    margin-top: 4px;
+}
+.magic-radio label{
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    color: #000000;
+}
+.accountTypeList label span{
+    position: relative;
+    top: 2px;
+}
+.chooseBtn input{
+    position: absolute;
+    left: 0px;
+    width: 120px;
+    height: 30px;
+    top: 1px;
+    opacity: 0;
+    cursor: pointer;
+}
+.avatar-uploader{
+    position: absolute;
+    width: 120px;
+    height: 32px;
+    top: 0px;
+    opacity: 0;
+}
+.el-upload{
+    width: 100%;
+    height: 100%;
+}
+.avatar-uploader-icon{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: -2px;
+}

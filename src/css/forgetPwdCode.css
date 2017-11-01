@@ -1,0 +1,38 @@
+
+.payPwOperate{
+    border-radius:5px;
+    background-color: #f6f6f7;
+    border:solid 1px #ececec;
+    margin-left: 12%;
+    margin-right: 12%;
+    height:75px;
+    margin-top:30px;
+}
+.payLeft{float: left;}
+.payPwOperate .payLeft img{
+    width: 30px;
+    height: 37px;
+    margin:18px 0 0 30px;
+    display: block;
+    float: left;
+}
+.payPwOperate .payLeft span{font-size:14px;color:#000;text-align:left;float: left;margin-left:20px;}
+.payPwOperate button{
+    width: 90px;
+    height: 30px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    color:#ffffff;
+    border:none;
+    float: right;
+    margin:22px 30px 0 0;
+}
+.help{
+    font-size: 12px;
+    color: #108ee9;
+    position: relative;
+    top: 70px;
+}
+button:hover{
+    background-color:#1074bc
+}

@@ -1,0 +1,236 @@
+.outer{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width:100%;
+    height:100%;
+    min-width: 1200px;
+    min-height: 100%;
+    background-color: #f7f7f7;
+    display:block;
+
+}
+.header{
+    width:100%;
+    height: 72px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.09);
+    background-color: #ffffff;
+
+}
+.logo{
+    margin-top: 13px;cursor: pointer;
+}
+.header a{
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    color: #000000;
+}
+.login{
+    margin-left: 3.3%;
+    position: relative;
+    bottom: 18px;
+    border-left:2px solid rgba(151, 151, 151, 0.2);
+    width: 70px;
+    display: inline-block;
+    text-align: right;
+    height: 30px;
+    line-height: 2;
+}
+.toFirstPage{
+    position: relative;
+    bottom: 25%;
+    border-left:1px solid #f4f5f7;
+}
+.hasNum{
+    display: inline-block;
+    position: relative;
+    bottom: 25%;color:#000;
+    margin-right: 10px;
+}
+.pleaseLogin{
+    display: inline-block;
+    position: relative;
+    bottom: 25%;
+    color: #108ee9;
+    margin-right: 10px;
+}
+.formBox{
+    width:100%;
+    height:500px;
+    margin-top: 50px;
+    background-color: #f4f5f7;
+
+}
+.register_footer{
+    text-align: center;
+    opacity: 0.7;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    height: 290px;
+    background-color: #f7f7f7;
+}
+.el-tabs__nav{
+    width:100%;
+}
+.el-tabs__item{
+    width:50%;
+    text-align: center;
+}
+.el-tabs__content{
+    text-align: center;
+}
+.form_content{
+    width:360px;
+    margin: auto;
+    position: relative;
+    top:50px;
+}
+.form_content ul li{margin-top:20px;}
+.form_content ul li .openText1{text-align:center;line-height:26px;font-size:16px;font-weight:bold;color:#000;}
+.form_content ul li .openText1 span{color:#ff0000;margin-left:5px;}
+.form_content ul li .openText2{text-align:center;font-size:12px;color:#999;line-height:26px;}
+.agree{margin-top:10px;}
+
+
+
+.el-input{
+    width: 65%;
+}
+.el-input-group__prepend{
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    letter-spacing: 3.8px;
+    text-align: left;
+    color: #000000;
+}
+.security{
+    font-family: "Microsoft YaHei";
+    font-size: 3px;
+    text-align: left;
+    color: #000000;
+}
+.signBtn{
+    width: 178px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    border: none;
+    color: #ffffff;
+    position: relative;
+    top:40px;
+}
+.errorMsg{
+    height: 25px;
+    width:100%;
+}
+.infoIcon{
+    position: relative;
+    top: 1px;
+}
+.signSuccess{
+    float: right;
+    position: relative;
+    top: -28px;
+    left: 25px;
+}
+.errorMsg span{
+    opacity: 0.3;
+    font-size: 11px;
+    text-align: left;
+    color: #000000;
+    /*color: #f00404;*/
+}
+
+#picCode{
+    width:90px;
+    height: 38px;
+}
+.verBox .el-input-group__append{
+    background-color: #C8C8C8;
+    cursor: pointer;
+    color:#ffffff;
+    width:80px;
+    text-align: center;
+}
+.verBox .el-input-group__append:hover{
+    background-color: #9B9B9B;
+}
+#cover{
+    position: absolute;
+    width: 160px;
+    bottom: 156px;
+}
+/*登录弹窗样式*/
+.firstPage{
+    margin-left: 6px;
+    position: relative;
+    bottom: 25%;
+}
+.login_form{
+    width: 430px;
+    height: 430px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.08);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index:10;
+    transition: width 2s;
+    -moz-transition: width 2s;	/* Firefox 4 */
+    -webkit-transition: width 2s;	/* Safari 和 Chrome */
+    -o-transition: width 2s;    /* Opera */
+}
+.nameInput {
+    width: 76%;
+}
+.link{
+    width: 60px;
+    height: 17px;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    text-align: left;
+    color: #108ee9;
+}
+.el-input__inner{
+    height:40px;
+}
+.contentImg{
+    left: 13%;
+    float: right;
+    width: 64%;
+    margin-top: 4%;
+    margin-right: 20%;
+    position:relative;
+}
+.p-text{
+    opacity: 0.7;
+    font-size: 12px;
+    line-height: 2.08;
+    margin-top: 10px;
+    color: #000;
+    font-family:"Microsoft YaHei"
+}
+.bgp{
+    width:100%;
+    background-repeat: no-repeat;
+    -moz-background-size:100% 100%;
+    display:block;
+}
+.tips{
+    width: 365px;
+}
+.formHeader{
+    height: 50px;
+    border-bottom:solid 1px #ececec;;
+}
+.el-input-group__append{
+    padding: 0px;
+}
+.el-input-group__prepend{width:60px !important;text-align:center !important;letter-spacing:0 !important;}

@@ -1,0 +1,113 @@
+html,body,div,p,a,h3,span,button,input{
+    font-family:"Microsoft YaHei";
+}
+body{
+    min-width: 1366px;
+}
+#app{
+    min-width: 1100px;
+}
+.content{
+    background-color: #ffffff;
+    overflow: auto;
+    min-width: 1100px;
+}
+/*webkit 滚动条宽度设置*/
+::-webkit-scrollbar{
+    width:0px;
+}
+.verifyHead{
+    height:47px;
+}
+.verifyHead span{
+    opacity: 0.7;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    text-align: left;
+    color: #222d32;
+    position: relative;
+    top: 18px;
+    left:29px;
+}
+.chooseBox{
+    height: 812px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px 0 rgba(231, 231, 231, 0.5);
+    margin-left: 29px;
+}
+.chooseBox span{
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    text-align: left;
+    color: #000;
+    position: relative;
+    left: 50px;
+    top:40px;
+}
+
+.person,.company{
+    width: 380px;
+    height: 365px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    float: left;
+    cursor: pointer;
+}
+.person img,.company img{
+    width: 74px;
+    height: 74px;
+    margin-left: 163px;
+    margin-top: 38px;
+
+}
+.person h2,.company h2{
+    font-family: "Microsoft YaHei";
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    color: #108ee9;
+}
+.expTxt{
+    margin-top: 46px;
+    margin-left: 46px;
+}
+.expTxt p{
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    line-height: 19.4px;
+    text-align: left;
+    color: #000000;
+}
+.person{
+    position: relative;
+    right: 40px;
+}
+.company{
+    position: relative;
+    left: 40px;
+}
+.active{
+    border: solid 1px #108ee9;
+}
+.selected{
+    background-color: #108ee9;
+}
+.tit{
+    height:80px;
+}
+.tit span{
+    position: relative;
+    top: 30px;
+    left: 100px;
+}
+.next{
+    width: 140px;
+    height: 36px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    border:none;
+    color: #ffffff;
+    position: relative;
+    top: 60px;
+}

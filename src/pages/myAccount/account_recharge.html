@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>账户总览-充值</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../css/account-overview.css">
+</head>
+<body>
+<div id="app">
+    <!--左菜单-->
+    <fs-left></fs-left>
+    <!--头部-->
+    <div class="main" v-cloak>
+        <fs-header :header-Parent-Tit="parentHeadTit" :head-Curr-Tit="currHeadTit" :is-Parent="isParent" :goto="goto"></fs-header>
+        <div class="content" :style="{height:contentHeight+'px'}">
+            <div class="account-overview">
+                <div class="rech-box">
+                    <div class="rech-title"><span>充值到人民币账户余额</span><span>当前余额<em><span id="unit">CNY</span>{{balance}}</em></span></div>
+                    <div class="rech-main">
+                        <div class="i-title"><h3>支付平台</h3></div>
+                        <ul>
+                            <li>
+                                <input class="magic-radio" name="radio" id="r1" value="option1" type="radio"
+                                       checked="checked">
+                                <label for="r1"><span><img src="../../images/alipay.png"></span></label>
+                            </li>
+                            <li>
+                                <input class="magic-radio" name="radio" id="r2" value="option2" type="radio">
+                                <label for="r2"><span><img src="../../images/weixinpay.png"></span></label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="rech-main">
+                        <div class="i-title"><h3>网上银行：需跳转银行页面完成支付</h3></div>
+                        <ul>
+                            <li v-for="item in bankList">
+                                <input class="magic-radio" name="radio" :id="item.id" :value="item.option3"
+                                       type="radio"/>
+                                <label :for="item.id"><span><img :src="item.img"></span></label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="passw-input">
+                        <el-input placeholder="请输入充值金额" style="width: 332px;" v-model="money">
+                            <template slot="prepend">充值金额</template>
+                        </el-input>
+                        <span><span id="unit">CNY</span></span>
+                        <p style="width:120px;cursor: pointer">
+                            <button class="titBtn" @click="sureToPay">确定</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;margin-top: 80px;margin-bottom: 45px">
+                <span style="opacity: 0.7;font-family: 'Microsoft YaHei';font-size: 14px;text-align: left;color: #000000;">©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="recharge">
+
+</div>
+<script type="text/javascript" src="../../js/load.js"></script>
+<script type="text/javascript">
+    load('account_recharge');
+</script>
+
+</body>
+</html>

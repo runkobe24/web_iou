@@ -1,0 +1,78 @@
+html,body,div,p,a,h3,span,button,input{
+    font-family:"Microsoft YaHei";
+}
+body{
+    min-width: 1366px;
+}
+#app{
+    min-width: 1100px;
+}
+/*webkit 滚动条宽度设置*/
+::-webkit-scrollbar{
+    width:0px;
+}
+
+.form_div{
+    text-align: center;
+    background-color: #ffffff;
+}
+.form_div ul{
+    margin: 0 auto;
+    width:400px;
+    overflow: hidden;
+}
+.form_div ul li{
+    text-align: left;
+    float: left;
+}
+.formTit{
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    color: #f00404;
+}
+.sure{
+    width: 140px;
+    height: 36px;
+    border-radius: 100px;
+    background-color: #108ee9;
+    font-family: "Microsoft YaHei";
+    color: #ffffff;
+    border:none;
+}
+.headTit{
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    text-align: right;
+    color: #000000;
+
+}
+.magic-radio+label:before{
+    position: absolute;
+    top: 0;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    margin-top: 4px;
+}
+.magic-radio label{
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    color: #000000;
+}
+.el-input{
+    width: 400px;
+}
+
+.verBox .el-input-group__append{
+    background-color: #C8C8C8;
+    cursor: pointer;
+    color:#ffffff;
+    width:70px;
+    text-align: center;
+}
+.verBox .el-input-group__append:hover{
+    background-color: #9B9B9B;
+}
+.el-input-group__append{
+    padding: 0px;
+}

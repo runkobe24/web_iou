@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../plugins/elementUI/fonts.css">
+    <link rel="stylesheet" href="../plugins/elementUI/elementUi.css">
+    <link rel="stylesheet" href="../css/help.css">
+    <title>使用指南</title>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="tit">
+            <p><img src="../images/byjfLogo.png" @click="fsby56()" style="cursor: pointer;" /><span class="line"></span><span class="titText">运条使用指南</span>
+            </p>
+        </div>
+        <div class="means">
+            <p class="means_tit">运条使用指南</p>
+            <ul>
+                <li class="useIcon">
+                    <img src="../images/help1.png"/>
+                    <p style="margin-top: 20px">信用积分达365分</p>
+                    <p>或线下申请完成预授信</p>
+                </li>
+                <li class="arrow">
+                    <img src="../images/arrow.png"/>
+                </li>
+                <li class="useIcon">
+                    <img src="../images/help2.png"/>
+                    <p style="margin-top: 20px">在线开通运条</p>
+                </li>
+                <li class="arrow">
+                    <img src="../images/arrow.png"/>
+                </li>
+                <li class="useIcon">
+                    <img src="../images/help3.png"/>
+                    <p style="margin-top: 20px">账户余额不足时</p>
+                    <p>自动使用运条</p>
+                </li>
+                <li class="arrow">
+                    <img src="../images/arrow.png"/>
+                </li>
+                <li class="useIcon" style="margin-right: 0px;">
+                    <img src="../images/help4.png"/>
+                    <p style="margin-top: 20px">随时还款，最长40天账期</p>
+                </li>
+            </ul>
+        </div>
+        <div class="ques">
+            <div class="innerBox">
+                <div class="innerImgBox">
+                    <img src="../images/remind.png"/>
+                </div>
+                <div class="innerTextBox">
+                    <h3 style="margin-top: 50px;">1、如何使用运条支付账单？</h3>
+                    <p>费用账单生成后，在余额不足的情况下，将自动使用运条支付账单。</p>
+                    <h3 style="margin-top: 40px;">2、什么时候还款？</h3>
+                    <p>运条还款灵活，使用运条支付后，可以随时还款，也可在下月出账单后于最晚还款日（9日）前还款。最晚</p>
+                    <p>还款日（9日）前还款。最晚还款日前您将会收到百运金服的短信提醒，以免延误还款造成不必要的损失。</p>
+                    <p>例：5月10日使用运条支付，6月9日（含）前还款即可。</p>
+                    <h3 style="margin-top: 40px;">3、去哪里还款？</h3>
+                    <p>您可登录百运网或百运金服，在用户中心找到运条还款入口。目前支持您手动还款。</p>
+
+                </div>
+            </div>
+            <div class="quesFoot">
+                <p>©2017  深圳市百运科技有限公司 版权所有  粤ICP备14023066号-1</p>
+            </div>
+        </div>
+    </div>
+    <!--登录弹窗-->
+    <div id="loginAlert" class="cover animated fadeIn" v-show="visible" style="width: 100%;display: none" v-cloak>
+        <div class="cover-bg" @click="hideLogin"></div>
+        <div class="login_form">
+            <img style="width: 84%;margin-left: 8%; display: block" src="../images/form-head.png">
+            <img src="../images/fsLogo.png" style="width:67px;height:67px;position: absolute;top: 59px;left: 191px;"/>
+            <img @click="hideLogin" src="../images/close.png" style="position: absolute;float: right;top: 6px;right: 6px;cursor: pointer;"/>
+            <ul style="text-align: center; margin-bottom: 12%" v-cloak >
+                <li>
+                    <el-input style="height: 40px;width: 76%;margin-top: 76px;" placeholder="请输入内容" :maxlength="11" v-model="userName">
+                        <template style="height: 40px;width: 21.7%" slot="prepend"><img src="../images/user.png"/></template>
+                    </el-input>
+                </li>
+                <li style="height: 15px;">
+                    <span style="color:red; font-size: 10px;margin-left: -225px;display: none" v-text="errMsg" v-show="errFlag"></span>
+                </li>
+                <li>
+                    <el-input style="height: 40px;width: 76%;margin-top: 10px;" type="password" placeholder="请输入内容" v-model="password">
+                        <template style="width: 21.7%" slot="prepend"><img src="../images/password.png"/></template>
+                    </el-input>
+                </li>
+                <li style="margin-top: 2%;">
+                    <a class="link" style="margin-right: 46%;">忘记密码？</a>
+                    <a class="link" @click="toRegister"><img src="../images/rightArrow.png" style="position: relative;top: 4px;right: 6px;"/>立即注册</a>
+                </li>
+                <li style="margin-top: 10%;">
+                    <el-button style="width: 73%;border-radius: 100px;height: 36px;" type="primary" @click="paramVerify" @keyup.enter="paramVerify">登录</el-button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/load.js"></script>
+    <script type="text/javascript">
+        load('help');
+    </script>
+</body>
+</html>
